@@ -445,13 +445,13 @@ function showLogEntry(index){
     logText.removeAttribute("style");
   }
 
-  if(logTitle.textContent.includes("Video Stream")) {
-    document.getElementById("log-video").removeAttribute("style");
-    document.getElementById("video-stream").removeAttribute("hidden");
-    document.getElementById("log-text").setAttribute("hidden", "");
-  } else {
-    document.getElementById("log-video").setAttribute("style", "display: none;");
-    document.getElementById("video-stream").setAttribute("hidden", "");
-    document.getElementById("log-text").removeAttribute("hidden");
-  }
+  // if(logTitle.textContent.includes("Video Stream")) {
+  //   document.getElementById("log-video").removeAttribute("style");
+  //   document.getElementById("video-stream").removeAttribute("hidden");
+  //   document.getElementById("log-text").setAttribute("hidden", "");
+  // } else {
+  //   document.getElementById("log-video").setAttribute("style", "display: none;");
+  //   document.getElementById("video-stream").setAttribute("hidden", "");
+  //   document.getElementById("log-text").removeAttribute("hidden");
+  // }
 }
