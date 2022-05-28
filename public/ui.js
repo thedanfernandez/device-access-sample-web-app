@@ -204,7 +204,8 @@ function updateOfferSDP(value) {
 }
 
 function updateStreamExtensionToken(value) {
-  streamExtensionToken = value;
+  let streamExtensionToken = value;
+  console.log(`streamExtensionToken: ${streamExtensionToken}`);
   document.getElementById("txtExtensionToken1").value = streamExtensionToken;
   document.getElementById("txtExtensionToken2").value = streamExtensionToken;
   document.getElementById("txtExtensionToken3").value = streamExtensionToken;

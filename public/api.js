@@ -130,6 +130,13 @@ function deviceAccessResponse(method, call, response) {
       break;
     case 'generateStream':
       console.log("Generate Stream!");
+      console.log({test: true, data});
+      console.log(`mediaSessionId=${data.results.mediaSessionId}`)
+      streamExtensionToken = data.results.mediaSessionId;
+      
+      if(data["results"] && data["results"].hasOwnProperty("mediaSessionId"))
+        streamExtensionToken = data.results.mediaSessionId;
+
       if(data["results"] && data["results"].hasOwnProperty("streamExtensionToken"))
         updateStreamExtensionToken(data["results"].streamExtensionToken);
       if(data["results"] && data["results"].hasOwnProperty("answerSdp")) {
