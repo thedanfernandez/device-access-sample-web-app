@@ -1,4 +1,10 @@
 {
+  "emulators": {
+    "hosting": {
+      "host": "localhost",
+      "port": "5001"
+    }
+  },
   "hosting": {
     "public": "public",
     "ignore": [

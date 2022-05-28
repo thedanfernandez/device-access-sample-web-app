@@ -38,3 +38,19 @@ Enter the OAuth credentials you created on [Google Cloud Platform](https://conso
 Make sure to add the redirect url `[PROJECT-ID].web.app/auth` in list of authorized URLs for your Client Id on Google Cloud Platform to prevent `Error 400: redirect_url_mismatch`. More instructions on this can be found at [Handling OAuth](https://developers.google.com/nest/device-access/codelabs/web-app#4) section from the [Building a Device Access Web Application Codelab](https://developers.google.com/nest/device-access/codelabs/web-app).
 
 You can try out a live demo at [device-access-sample.web.app](https://device-access-sample.web.app/).
+
+### Local
+
+- Add Authorized Redirect URI
+- Set hosting emulator port if needed in firebase.json
+
+```json
+  "emulators": {
+    "hosting": {
+      "host": "localhost",
+      "port": "5001"
+    }
+  },
+```
+
+- Run locally `firebase emulators:start`
