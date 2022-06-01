@@ -8,13 +8,19 @@
   <script type="application/javascript" src="auth.js"></script>
   <script type="application/javascript" src="events.js"></script>
   <script type="application/javascript" src="logger.js"></script>
-  <script type="application/javascript" src="ui.js"></script>
   <script type="application/javascript" src="webrtc.js"></script>
   <script type="application/javascript" src="third_party/kjur.min.js"></script>
 </head>
 <body>
   <div>
     <h3>Video</h3>
+    <div>
+      <div id="errorMsgElement"></div>
+      <button id="record">Record</button> 
+      <button id="stop">Stop</button>
+      <button id="download" disabled>Download</button>
+
+    </div>
     <div id="log-video" class="log-video" >
       <video id="video-stream" autoplay playsinline controls></video>
     </div>
@@ -347,9 +353,11 @@
 <template>
   <div class="log-entry"></div>
 </template>
+<script type="application/javascript" src="ui.js"></script>
 
 <!-- Initializing JavaScript -->
 <script type="application/javascript">
   init();
 </script>
+
 </html>

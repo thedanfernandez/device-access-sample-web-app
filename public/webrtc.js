@@ -20,7 +20,7 @@ limitations under the License.
 let localPeerConnection;
 let localSendChannel;
 let localStream;
-let remoteStream;
+var remoteStream;
 let offerSDP = "";
 let initialized = false;
 
@@ -119,6 +119,7 @@ function getPeerName(peerConnection) {
 /** gotRemoteMediaTrack - Handles received media track */
 function gotRemoteMediaTrack(event) {
   console.log(`gotRemoteMediaTrack()`);
+  console.log(event.track)
   remoteStream.addTrack(event.track);
   document.getElementById("video-stream").srcObject = remoteStream;
   console.log('Received remote track.');

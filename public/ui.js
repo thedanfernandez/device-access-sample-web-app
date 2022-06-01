@@ -14,6 +14,78 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+let mediaRecorder;
+let recordedBlobs;
+
+const recordButton = document.getElementById('record');
+const stopButton = document.getElementById('stop');
+const videoStreamEl = document.getElementById('video-stream');
+
+const downloadButton = document.getElementById('download');
+console.log(recordButton)
+recordButton.addEventListener('click', () => {
+  if (recordButton.textContent === 'Record') {
+    startRecording();
+  } else {
+    stopRecording();
+    recordButton.textContent = 'Record';
+    // playButton.disabled = false;
+    downloadButton.disabled = false;
+  }
+});
+
+function handleDataAvailable(event) {
+  console.log('handleDataAvailable', event);
+  if (event.data && event.data.size > 0) {
+    recordedBlobs.push(event.data);
+  }
+}
+
+function stopRecording() {
+  mediaRecorder.stop();
+}
+
+function startRecording() {
+  recordedBlobs = [];
+  let options = {mimeType: 'video/webm;codecs=vp9,opus'};
+  try {
+    console.log(remoteStream)
+    mediaRecorder = new MediaRecorder(remoteStream, options);
+    //mediaRecorder = new MediaRecorder(window.stream, options);
+  } catch (e) {
+    console.error('Exception while creating MediaRecorder:', e);
+    errorMsgElement.innerHTML = `Exception while creating MediaRecorder: ${JSON.stringify(e)}`;
+    return;
+  }
+  
+  console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+  recordButton.textContent = 'Stop Recording';
+
+  mediaRecorder.onstop = (event) => {
+    console.log('Recorder stopped: ', event);
+    console.log('Recorded Blobs: ', recordedBlobs);
+  };
+  mediaRecorder.ondataavailable = handleDataAvailable;
+  mediaRecorder.start();
+  console.log('MediaRecorder started', mediaRecorder);
+}
+
+downloadButton.addEventListener('click', () => {
+  const blob = new Blob(recordedBlobs, {type: 'video/mp4'});
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.style.display = 'none';
+  a.href = url;
+  a.download = 'test.mp4';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 100);
+});
+
+/******************/
 
 /// UI Controller Functions - Buttons ///
 
