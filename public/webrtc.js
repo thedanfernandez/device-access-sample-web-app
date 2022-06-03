@@ -68,9 +68,11 @@ function startLocalStream(mediaStream) {
   localPeerConnection.addEventListener('iceconnectionstatechange', handleConnectionChange);
 
   if(mediaStream) {
+    console.log('total tracks: ' + mediaStream.getTracks().length);
     mediaStream.getTracks().forEach((track) => {
+      console.log('track: ' + track);
       localPeerConnection.addTrack(track, mediaStream);
-      console.log(`track added!`);
+      // console.log(`track added!`);
     });
     localStream = mediaStream;
   }

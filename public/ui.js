@@ -22,7 +22,6 @@ const stopButton = document.getElementById('stop');
 const videoStreamEl = document.getElementById('video-stream');
 
 const downloadButton = document.getElementById('download');
-console.log(recordButton)
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Record') {
     startRecording();

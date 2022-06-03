@@ -54,3 +54,61 @@ You can try out a live demo at [device-access-sample.web.app](https://device-acc
 ```
 
 - Run locally `firebase emulators:start`
+
+
+
+
+### Order of operations
+
+### Account Linking SIGN IN
+- set 
+
+Client ID: [CLIENT_ID].apps.googleusercontent.com
+Secret: [SECRET]
+Device Project ID: [PROJECT_ID]
+
+
+* Data kept in local stoarage (ui.js update* methods)
+clientId
+clientSecret
+ProjectId
+oauthCode
+isSignedIn
+
+
+Order of operations
+- index.html-init()
+- app.js-init()
+  - readStorage();                // Reads data from browser's local storage if available
+  - await handleAuth();           // Checks incoming authorization code from /auth path
+    - //URL http://localhost:5001/auth
+    - '?state=pass-through%20value', 
+    - 'code=4/0AX4XfWjmw2bxgB0iWyrHJp6XkAKRqp2GQu3DXk12qptfjvE88OkxWd8CRXCL9F00BhYtYw'
+    - 'scope=https://www.googleapis.com/auth/sdm.service'
+
+    - updateOauthCode(val)
+      - 4/0AX4XfWjmw2bxgB0iWyrHJp6XkAKRqp2GQu3DXk12qptfjvE88OkxWd8CRXCL9F00BhYtYw
+  - await exchangeCode();         // Exchanges authorization code to an access token
+    - xhr.onload()                //Sends payload / code / etc to get access_token and refresh_token
+    - updateAccessToken()
+    - updateRefreshToken()
+    - updatedSignedIn()
+  - await refreshAccess();        // Retrieves a new access token using refresh token
+    - xhr.onload()
+    - updateAccessToken
+  - initializeDevices();          // Issues a list devices call if logged-in
+    - ui.js-clickListDevices()
+    - onListDevices()
+    - api.js-deviceAccessRequest       // List devices
+- ui.js-clickSignIn()
+- ui.js-signIn() - form submission
+- auth.js-signIn()
+- auth.js-exchangeCode()
+- xhr.onload - Post request to token endpoint
+- updateAccessToken
+- updateRefreshToken
+- updateSignedIn
+  - updateSubscribed(false)
+  - updateAppControls
+- resolve
+- 
