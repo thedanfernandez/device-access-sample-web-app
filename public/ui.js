@@ -281,7 +281,7 @@ function updateOfferSDP(value) {
   console.log({updateOfferSDP: value});
   offerSDP = value;
   document.getElementById("txtOfferSDPCamera").value = offerSDP;
-  document.getElementById("txtOfferSDPDoorbell").value = offerSDP;
+  // document.getElementById("txtOfferSDPDoorbell").value = offerSDP;
 }
 
 function updateStreamExtensionToken(value) {
@@ -297,57 +297,57 @@ function updateOAuthCode(value) {
   oauthCode = value;
   localStorage["oauthCode"] = oauthCode;
   
-  if(value === "") {
-    document.getElementById("imgOAuthCode").src = "images/empty.png";
-    document.getElementById("imgOAuthCode").alt = "Pending...";
-    document.getElementById("imgOAuthCode").title = "";
-  } else if(value === undefined) {
-    document.getElementById("imgOAuthCode").src = "images/failure.png";
-    document.getElementById("imgOAuthCode").alt = "Failure!";
-    document.getElementById("imgOAuthCode").title = "";
-  } else {
-    document.getElementById("imgOAuthCode").src = "images/success.png";
-    document.getElementById("imgOAuthCode").alt = "Success!";
-    document.getElementById("imgOAuthCode").title = oauthCode;
-  }
+  // if(value === "") {
+  //   document.getElementById("imgOAuthCode").src = "images/empty.png";
+  //   document.getElementById("imgOAuthCode").alt = "Pending...";
+  //   document.getElementById("imgOAuthCode").title = "";
+  // } else if(value === undefined) {
+  //   document.getElementById("imgOAuthCode").src = "images/failure.png";
+  //   document.getElementById("imgOAuthCode").alt = "Failure!";
+  //   document.getElementById("imgOAuthCode").title = "";
+  // } else {
+  //   document.getElementById("imgOAuthCode").src = "images/success.png";
+  //   document.getElementById("imgOAuthCode").alt = "Success!";
+  //   document.getElementById("imgOAuthCode").title = oauthCode;
+  // }
 }
 
 function updateAccessToken(value) {
   accessToken = value;
   localStorage["accessToken"] = accessToken;
   
-  if(value === "") {
-    document.getElementById("imgAccessToken").src = "images/empty.png";
-    document.getElementById("imgAccessToken").alt = "Pending...";
-    document.getElementById("imgAccessToken").title = "";
-  } else if(value === undefined) {
-    document.getElementById("imgAccessToken").src = "images/failure.png";
-    document.getElementById("imgAccessToken").alt = "Failure!";
-    document.getElementById("imgAccessToken").title = "";
-  } else {
-    document.getElementById("imgAccessToken").src = "images/success.png";
-    document.getElementById("imgAccessToken").alt = "Success!";
-    document.getElementById("imgAccessToken").title = accessToken;
-  }
+  // if(value === "") {
+  //   document.getElementById("imgAccessToken").src = "images/empty.png";
+  //   document.getElementById("imgAccessToken").alt = "Pending...";
+  //   document.getElementById("imgAccessToken").title = "";
+  // } else if(value === undefined) {
+  //   document.getElementById("imgAccessToken").src = "images/failure.png";
+  //   document.getElementById("imgAccessToken").alt = "Failure!";
+  //   document.getElementById("imgAccessToken").title = "";
+  // } else {
+  //   document.getElementById("imgAccessToken").src = "images/success.png";
+  //   document.getElementById("imgAccessToken").alt = "Success!";
+  //   document.getElementById("imgAccessToken").title = accessToken;
+  // }
 }
 
 function updateRefreshToken(value) {
   refreshToken = value;
   localStorage["refreshToken"] = refreshToken;
   
-  if(value === "") {
-    document.getElementById("imgRefreshToken").src = "images/empty.png";
-    document.getElementById("imgRefreshToken").alt = "Pending...";
-    document.getElementById("imgRefreshToken").title = "";
-  } else if(value === undefined) {
-    document.getElementById("imgRefreshToken").src = "images/failure.png";
-    document.getElementById("imgRefreshToken").alt = "Failure!";
-    document.getElementById("imgRefreshToken").title = "";
-  } else {
-    document.getElementById("imgRefreshToken").src = "images/success.png";
-    document.getElementById("imgRefreshToken").alt = "Success!";
-    document.getElementById("imgRefreshToken").title = refreshToken;
-  }
+  // if(value === "") {
+  //   document.getElementById("imgRefreshToken").src = "images/empty.png";
+  //   document.getElementById("imgRefreshToken").alt = "Pending...";
+  //   document.getElementById("imgRefreshToken").title = "";
+  // } else if(value === undefined) {
+  //   document.getElementById("imgRefreshToken").src = "images/failure.png";
+  //   document.getElementById("imgRefreshToken").alt = "Failure!";
+  //   document.getElementById("imgRefreshToken").title = "";
+  // } else {
+  //   document.getElementById("imgRefreshToken").src = "images/success.png";
+  //   document.getElementById("imgRefreshToken").alt = "Success!";
+  //   document.getElementById("imgRefreshToken").title = refreshToken;
+  // }
 }
 
 function updateSignedIn(value) {

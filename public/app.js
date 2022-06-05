@@ -26,8 +26,8 @@ let selectedDevice;
 /** init - Initializes the loaded javascript */
 async function init() {
   readStorage();                // Reads data from browser's local storage if available
-  await handleAuth();           // Checks incoming authorization code from /auth path
-  await exchangeCode();         // Exchanges authorization code to an access token
+  // await handleAuth();           // Checks incoming authorization code from /auth path
+  // await exchangeCode();         // Exchanges authorization code to an access token
   await refreshAccess();        // Retrieves a new access token using refresh token
   initializeDevices();          // Issues a list devices call if logged-in
 
