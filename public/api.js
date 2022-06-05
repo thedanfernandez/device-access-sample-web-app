@@ -183,11 +183,11 @@ function deviceAccessResponse(method, call, response) {
 
 /// Device Access API ///
 
-/** onListDevices - Issues a ListDevices request */
-function onListDevices() {
-  let endpoint = "/enterprises/" + projectId + "/devices";
-  deviceAccessRequest('GET', 'listDevices', endpoint);
-}
+// /** onListDevices - Issues a ListDevices request */
+// function onListDevices() {
+//   let endpoint = "/enterprises/" + projectId + "/devices";
+//   deviceAccessRequest('GET', 'listDevices', endpoint);
+// }
 
 // /** onListStructures - Issues a ListStructures request */
 // function onListStructures() {

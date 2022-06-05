@@ -146,10 +146,10 @@ startStreamButton.addEventListener('click', onGenerateStream_WebRTC);
 //   openResourcePicker();
 // }
 
-function clickListDevices() {
-  // pushLog(LogType.ACTION, "List Devices", "Initiating List Devices call to Device Access API");
-  onListDevices();
-}
+// function clickListDevices() {
+//   // pushLog(LogType.ACTION, "List Devices", "Initiating List Devices call to Device Access API");
+//   onListDevices();
+// }
 
 // function clickListStructures() {
 //   pushLog(LogType.ACTION, "List Structures", "Initiating List Structures call to Device Access API");

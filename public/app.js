@@ -94,11 +94,11 @@ function readStorage() {
 }
 
 /** initializeDevices - Issues a list devices call if logged-in */
-function initializeDevices() {
-  if(isSignedIn) {
-    clickListDevices();
-  }
-}
+// function initializeDevices() {
+//   if(isSignedIn) {
+//     clickListDevices();
+//   }
+// }
 
 
 /// Helper Functions ///
