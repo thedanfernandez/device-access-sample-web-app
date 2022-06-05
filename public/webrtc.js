@@ -43,10 +43,12 @@ const mediaStreamConstraints = {
 
 /** initializeWebRTC - Triggers starting a new WebRTC stream on initialization */
 function initializeWebRTC() {
-  if(initialized===true)
-    return;
-  // console.log(`initializeWebRTC()`);
   console.log({initializeWebRTC: initialized});
+
+  if(initialized===true)
+  {
+    return;
+  }
   initialized = true;
   startLocalStream();
 }
