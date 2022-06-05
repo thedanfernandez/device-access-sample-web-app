@@ -21,7 +21,6 @@ limitations under the License.
 // Device Access Variables:
 let streamExtensionToken = "";
 
-
 /** deviceAccessRequest - Issues requests to Device Access Rest API */
 function deviceAccessRequest(method, call, localpath, payload = "") {
   let xhr = new XMLHttpRequest();
@@ -32,7 +31,6 @@ function deviceAccessRequest(method, call, localpath, payload = "") {
   xhr.onload = function () {
     if(xhr.status === 200) {
       let responsePayload = "* Payload: \n" + xhr.response;
-      // pushLog(LogType.HTTP, method + " Response", responsePayload);
       deviceAccessResponse(method, call, xhr.response);
     } else {
       console.error({method, call, localpath, response: xhr.responseText});

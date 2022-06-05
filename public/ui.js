@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
 /**************** RECORDING ****************/
 let mediaRecorder;
 let recordedBlobs;
@@ -126,8 +125,6 @@ function updateAccessToken(value) {
 }
 
 function updateRefreshToken(value) {
-  
   refreshToken = value;
   localStorage["refreshToken"] = refreshToken;
-  
 }

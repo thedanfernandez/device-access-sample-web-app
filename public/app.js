@@ -36,7 +36,6 @@ function readStorage() {
     updateClientSecret(localStorage["clientSecret"]);
   }
 
-
   if (localStorage["refreshToken"]) {
     updateRefreshToken(localStorage["refreshToken"]);
   }
