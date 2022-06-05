@@ -56,7 +56,16 @@ You can try out a live demo at [device-access-sample.web.app](https://device-acc
 - Run locally `firebase emulators:start`
 
 
+### Cameras
 
+Rink Deck
+- name: enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA
+
+Rink Tower
+- name: enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEt91Ajn0DOWYiejYtAuz8ePIY7U9luwiczyMiJyHjElP6eWlXdXh2QRvLQWICtpp2VxnSBDCPgAEPwxBr_w9JdtPw
+
+Office Camera
+- name: enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEszqe2aDh24oxHWkBAFMJjGUyPVmUW1BTG4Thly3HVnGxNv5wdUYX1KKETbyz4YMoJezBSeUqmkPivEC7Ej1fYp_g
 
 ### Order of operations
 

@@ -1,3 +1,6 @@
+const RinkDeckCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA"
+                //     "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA:executeCommand"
+
 
 /* Copyright 2020 Google LLC
 
@@ -302,7 +305,11 @@ function onListDevices() {
 
 /** onGenerateStream_WebRTC - Issues a GenerateWebRtcStream request */
 function onGenerateStream_WebRTC() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+  // console.log(`{onGenerateStream_WebRTC: ${selectedDevice.id}}`);
+  //let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+  let endpoint = `${RinkDeckCamera}:executeCommand`;
+  console.log({endpoint: endpoint})
+  
   let payload = {
     "command": "sdm.devices.commands.CameraLiveStream.GenerateWebRtcStream",
     "params": {
