@@ -114,36 +114,36 @@ class Device {
   }
 }
 
-/** addDevice - Add device to Device Control list */
-function addDevice(device) {
-  // Create an Option object
-  let opt = document.createElement("option");
+// /** addDevice - Add device to Device Control list */
+// function addDevice(device) {
+//   // Create an Option object
+//   let opt = document.createElement("option");
 
-  // Assign text and value to Option object
-  opt.text = device.name;
-  opt.value = JSON.stringify(device);
+//   // Assign text and value to Option object
+//   opt.text = device.name;
+//   opt.value = JSON.stringify(device);
 
-  // Add an Option object to Drop Down List Box
-  document.getElementById("sctDeviceList").options.add(opt);
+//   // Add an Option object to Drop Down List Box
+//   document.getElementById("sctDeviceList").options.add(opt);
 
-  // If this is the first device added, choose it
-  if(document.getElementById("sctDeviceList").options.length === 1) {
-    selectedDevice = device;
-    showDeviceControls();
-  }
-}
+//   // If this is the first device added, choose it
+//   if(document.getElementById("sctDeviceList").options.length === 1) {
+//     selectedDevice = device;
+//     showDeviceControls();
+//   }
+// }
 
 /** clearDevices - Clear Device Control list */
-function clearDevices() {
-  let deviceListLength = document.getElementById("sctDeviceList").options.length;
-  for (let i = deviceListLength - 1; i >= 0; i--) {
-    document.getElementById("sctDeviceList").options[i] = null;
-  }
-  hideDeviceControls();
-}
+// function clearDevices() {
+//   let deviceListLength = document.getElementById("sctDeviceList").options.length;
+//   for (let i = deviceListLength - 1; i >= 0; i--) {
+//     document.getElementById("sctDeviceList").options[i] = null;
+//   }
+//   hideDeviceControls();
+// }
 
 /** stringFormat - Formats input string to Upper Camel Case */
-function stringFormat(str) {
-  return str.replace(/(\w)(\w*)/g,
-      function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();});
-}
+// function stringFormat(str) {
+//   return str.replace(/(\w)(\w*)/g,
+//       function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();});
+// }
