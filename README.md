@@ -152,7 +152,6 @@ https://nestservices.google.com/partnerconnections/64cee621-f825-4365-a5d0-046fd
 - setDescriptionSuccess (webrtc 144)
 - getPeerName (webrtc 120)
 - XHR finished loading Post - (api.js 46)
-- Ice state change event (webrtc 182)
 - handleConnectionChange<event> (webrtc 183)
 - receiveChannelCallback (webrtc 136)
 - receiveChannelCallback (webrtc 136)

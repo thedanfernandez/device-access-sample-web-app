@@ -179,6 +179,6 @@ const handleReceiveMessage = (event) => {
 
 /** handleConnectionChange - Handles connection change */
 function handleConnectionChange(event) {
-  console.log('ICE state change event: ', event);
+  //console.log('ICE state change event: ', event);
   console.log({handleConnectionChange: event});
 }

@@ -125,9 +125,9 @@ function deviceAccessResponse(method, call, response) {
         addDevice(new Device(deviceId, deviceType, deviceName, deviceStructure, deviceTraits));
       }
       break;
-    case 'listStructures':
-      console.log("List Structures!");
-      break;
+    // case 'listStructures':
+    //   console.log("List Structures!");
+    //   break;
     case 'generateStream':
       console.log("Generate Stream!");
       console.log({test: true, data});
@@ -152,27 +152,27 @@ function deviceAccessResponse(method, call, response) {
       console.log("Stop Stream!");
       initializeWebRTC();
       break;
-    case 'fanMode':
-      if(document.getElementById("btnFanMode").textContent === "Activate Fan")
-        document.getElementById("btnFanMode").textContent = "Deactivate Fan";
-      else
-        document.getElementById("btnFanMode").textContent = "Activate Fan";
-      break;
-    case 'thermostatMode':
-      console.log("Thermostat Mode!");
-      break;
-    case 'temperatureSetpoint':
-      console.log("Temperature Setpoint!");
-      break;
+    // case 'fanMode':
+    //   if(document.getElementById("btnFanMode").textContent === "Activate Fan")
+    //     document.getElementById("btnFanMode").textContent = "Deactivate Fan";
+    //   else
+    //     document.getElementById("btnFanMode").textContent = "Activate Fan";
+    //   break;
+    // case 'thermostatMode':
+    //   console.log("Thermostat Mode!");
+    //   break;
+    // case 'temperatureSetpoint':
+    //   console.log("Temperature Setpoint!");
+    //   break;
     default:
       pushError(LogType.ACTION, "Error", "Unrecognized Request Call!");
   }
 }
 
-/** openResourcePicker - Opens Resource Picker on a new browser tab */
-function openResourcePicker() {
-  window.open(selectedResourcePicker);
-}
+// /** openResourcePicker - Opens Resource Picker on a new browser tab */
+// function openResourcePicker() {
+//   window.open(selectedResourcePicker);
+// }
 
 
 
@@ -184,121 +184,121 @@ function onListDevices() {
   deviceAccessRequest('GET', 'listDevices', endpoint);
 }
 
-/** onListStructures - Issues a ListStructures request */
-function onListStructures() {
-  let endpoint = "/enterprises/" + projectId + "/structures";
-  deviceAccessRequest('GET', 'listStructures', endpoint);
-}
+// /** onListStructures - Issues a ListStructures request */
+// function onListStructures() {
+//   let endpoint = "/enterprises/" + projectId + "/structures";
+//   deviceAccessRequest('GET', 'listStructures', endpoint);
+// }
 
-/** onFan - Issues a FanMode change request */
-function onFan() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  // Construct the payload:
-  let payload = {
-    "command": "sdm.devices.commands.Fan.SetTimer",
-    "params": {}
-  };
-  // Set correct FanMode based on the current selection:
-  switch (document.getElementById("btnFanMode").textContent) {
-    case "Activate Fan":
-      payload.params["timerMode"] = "ON";
-      payload.params["duration"] = "3600s";
-      break;
-    case "Deactivate Fan":
-      payload.params["timerMode"] = "OFF";
-      break;
-    default:
-      pushError(LogType.ACTION, "Error", "Button Mode not recognized!");
-      return;
-  }
-  deviceAccessRequest('POST', 'fanMode', endpoint, payload);
-}
+// /** onFan - Issues a FanMode change request */
+// function onFan() {
+//   let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+//   // Construct the payload:
+//   let payload = {
+//     "command": "sdm.devices.commands.Fan.SetTimer",
+//     "params": {}
+//   };
+//   // Set correct FanMode based on the current selection:
+//   switch (document.getElementById("btnFanMode").textContent) {
+//     case "Activate Fan":
+//       payload.params["timerMode"] = "ON";
+//       payload.params["duration"] = "3600s";
+//       break;
+//     case "Deactivate Fan":
+//       payload.params["timerMode"] = "OFF";
+//       break;
+//     default:
+//       pushError(LogType.ACTION, "Error", "Button Mode not recognized!");
+//       return;
+//   }
+//   deviceAccessRequest('POST', 'fanMode', endpoint, payload);
+// }
 
-/** onThermostatMode - Issues a ThermostatMode request */
-function onThermostatMode() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let tempMode = document.getElementById("sctThermostatMode").value;
-  let payload = {
-    "command": "sdm.devices.commands.ThermostatMode.SetMode",
-    "params": {
-      "mode": tempMode
-    }
-  };
-  deviceAccessRequest('POST', 'thermostatMode', endpoint, payload);
-}
+// /** onThermostatMode - Issues a ThermostatMode request */
+// function onThermostatMode() {
+//   let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+//   let tempMode = document.getElementById("sctThermostatMode").value;
+//   let payload = {
+//     "command": "sdm.devices.commands.ThermostatMode.SetMode",
+//     "params": {
+//       "mode": tempMode
+//     }
+//   };
+//   deviceAccessRequest('POST', 'thermostatMode', endpoint, payload);
+// }
 
-/** onTemperatureSetpoint - Issues a TemperatureSetpoint request */
-function onTemperatureSetpoint() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let heatCelsius = parseFloat(document.getElementById("txtHeatTemperature").value);
-  let coolCelsius = parseFloat(document.getElementById("txtCoolTemperature").value);
-  // Convert temperature values based on temperature unit:
-  if(document.getElementById("heatUnit").innerText === "°F") {
-    heatCelsius = (heatCelsius - 32) * 5 / 9;
-  }
-  if(document.getElementById("coolUnit").innerText === "°F") {
-    coolCelsius = (coolCelsius - 32) * 5 / 9;
-  }
-  // Construct the payload:
-  let payload = {
-    "command": "",
-    "params": {}
-  };
-  // Set correct temperature fields based on the selected ThermostatMode:
-  switch (document.getElementById("sctThermostatMode").value) {
-    case "HEAT":
-      payload.command = "sdm.devices.commands.ThermostatTemperatureSetpoint.SetHeat";
-      payload.params["heatCelsius"] = heatCelsius;
-      break;
-    case "COOL":
-      payload.command = "sdm.devices.commands.ThermostatTemperatureSetpoint.SetCool";
-      payload.params["coolCelsius"] = coolCelsius;
-      break;
-    case "HEATCOOL":
-      payload.command = "sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange";
-      payload.params["heatCelsius"] = heatCelsius;
-      payload.params["coolCelsius"] = coolCelsius;
-      break;
-    default:
-      pushError(LogType.ACTION, "Invalid Mode!", "Off and Eco modes don't allow this function!"
-          + "\n (Try changing the Thermostat Mode to some other value)");
-      return;
-  }
-  deviceAccessRequest('POST', 'temperatureSetpoint', endpoint, payload);
-}
+// /** onTemperatureSetpoint - Issues a TemperatureSetpoint request */
+// function onTemperatureSetpoint() {
+//   let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+//   let heatCelsius = parseFloat(document.getElementById("txtHeatTemperature").value);
+//   let coolCelsius = parseFloat(document.getElementById("txtCoolTemperature").value);
+//   // Convert temperature values based on temperature unit:
+//   if(document.getElementById("heatUnit").innerText === "°F") {
+//     heatCelsius = (heatCelsius - 32) * 5 / 9;
+//   }
+//   if(document.getElementById("coolUnit").innerText === "°F") {
+//     coolCelsius = (coolCelsius - 32) * 5 / 9;
+//   }
+//   // Construct the payload:
+//   let payload = {
+//     "command": "",
+//     "params": {}
+//   };
+//   // Set correct temperature fields based on the selected ThermostatMode:
+//   switch (document.getElementById("sctThermostatMode").value) {
+//     case "HEAT":
+//       payload.command = "sdm.devices.commands.ThermostatTemperatureSetpoint.SetHeat";
+//       payload.params["heatCelsius"] = heatCelsius;
+//       break;
+//     case "COOL":
+//       payload.command = "sdm.devices.commands.ThermostatTemperatureSetpoint.SetCool";
+//       payload.params["coolCelsius"] = coolCelsius;
+//       break;
+//     case "HEATCOOL":
+//       payload.command = "sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange";
+//       payload.params["heatCelsius"] = heatCelsius;
+//       payload.params["coolCelsius"] = coolCelsius;
+//       break;
+//     default:
+//       pushError(LogType.ACTION, "Invalid Mode!", "Off and Eco modes don't allow this function!"
+//           + "\n (Try changing the Thermostat Mode to some other value)");
+//       return;
+//   }
+//   deviceAccessRequest('POST', 'temperatureSetpoint', endpoint, payload);
+// }
 
-/** onGenerateStream - Issues a GenerateRtspStream request */
-function onGenerateStream() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let payload = {
-    "command": "sdm.devices.commands.CameraLiveStream.GenerateRtspStream"
-  };
-  deviceAccessRequest('POST', 'generateStream', endpoint, payload);
-}
+// /** onGenerateStream - Issues a GenerateRtspStream request */
+// function onGenerateStream() {
+//   let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+//   let payload = {
+//     "command": "sdm.devices.commands.CameraLiveStream.GenerateRtspStream"
+//   };
+//   deviceAccessRequest('POST', 'generateStream', endpoint, payload);
+// }
 
-/** onExtendStream - Issues a ExtendRtspStream request */
-function onExtendStream() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let payload = {
-    "command": "sdm.devices.commands.CameraLiveStream.ExtendRtspStream",
-    "params": {
-      "streamExtensionToken" : streamExtensionToken
-    }
-  };
-  deviceAccessRequest('POST', 'refreshStream', endpoint, payload);
-}
+// /** onExtendStream - Issues a ExtendRtspStream request */
+// function onExtendStream() {
+//   let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+//   let payload = {
+//     "command": "sdm.devices.commands.CameraLiveStream.ExtendRtspStream",
+//     "params": {
+//       "streamExtensionToken" : streamExtensionToken
+//     }
+//   };
+//   deviceAccessRequest('POST', 'refreshStream', endpoint, payload);
+// }
 
-/** onStopStream - Issues a StopRtspStream request */
-function onStopStream() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let payload = {
-    "command": "sdm.devices.commands.CameraLiveStream.StopRtspStream",
-    "params": {
-      "streamExtensionToken" : streamExtensionToken
-    }
-  };
-  deviceAccessRequest('POST', 'stopStream', endpoint, payload);
-}
+// /** onStopStream - Issues a StopRtspStream request */
+// function onStopStream() {
+//   let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+//   let payload = {
+//     "command": "sdm.devices.commands.CameraLiveStream.StopRtspStream",
+//     "params": {
+//       "streamExtensionToken" : streamExtensionToken
+//     }
+//   };
+//   deviceAccessRequest('POST', 'stopStream', endpoint, payload);
+// }
 
 /** onGenerateStream_WebRTC - Issues a GenerateWebRtcStream request */
 function onGenerateStream_WebRTC() {
