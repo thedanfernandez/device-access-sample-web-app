@@ -27,10 +27,8 @@ let selectedResourcePicker = "https://sdmresourcepicker.sandbox.google.com/";
 // Partner Credentials:
 let clientId = "";
 let clientSecret = "";
-let projectId = "";
 
 // Authentication Variables:
-let oauthCode = "";
 let accessToken = "";
 let refreshToken = "";
 
