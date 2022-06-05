@@ -1,6 +1,6 @@
 const RinkDeckCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA"
                 //     "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA:executeCommand"
-const 
+const RinkTowerCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEt91Ajn0DOWYiejYtAuz8ePIY7U9luwiczyMiJyHjElP6eWlXdXh2QRvLQWICtpp2VxnSBDCPgAEPwxBr_w9JdtPw"
 
 /* Copyright 2020 Google LLC
 

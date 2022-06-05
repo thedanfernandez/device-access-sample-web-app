@@ -48,7 +48,9 @@ function stopRecording() {
 
 function startRecording() {
   recordedBlobs = [];
-  let options = {mimeType: 'video/webm;codecs=vp9,opus'};
+  // let options = {mimeType: 'video/webm;codecs=vp9,opus'};
+  let options = {mimeType: 'video/webm;codecs=h264,opus'};
+
   try {
     console.log(remoteStream)
     mediaRecorder = new MediaRecorder(remoteStream, options);
