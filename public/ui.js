@@ -384,34 +384,34 @@ function updateSubscribed(value) {
   }
 }
 
-function updateLogFilter(value) {
-  logFilter = value;
-  localStorage["logFilter"] = logFilter;
+// function updateLogFilter(value) {
+//   logFilter = value;
+//   localStorage["logFilter"] = logFilter;
 
-  if (logFilter.includes(LogType.ACTION)) {
-    document.getElementById("btnFilterAction").classList.add("filter-action");
-  }
-  else {
-    document.getElementById("btnFilterAction").classList.remove("filter-action");
-  }
+//   if (logFilter.includes(LogType.ACTION)) {
+//     document.getElementById("btnFilterAction").classList.add("filter-action");
+//   }
+//   else {
+//     document.getElementById("btnFilterAction").classList.remove("filter-action");
+//   }
 
-  if (logFilter.includes(LogType.HTTP)) {
-    document.getElementById("btnFilterHTTP").classList.add("filter-http");
-  }
-  else {
-    document.getElementById("btnFilterHTTP").classList.remove("filter-http");
-  }
+//   if (logFilter.includes(LogType.HTTP)) {
+//     document.getElementById("btnFilterHTTP").classList.add("filter-http");
+//   }
+//   else {
+//     document.getElementById("btnFilterHTTP").classList.remove("filter-http");
+//   }
 
-  if (logFilter.includes(LogType.EVENT)) {
-    document.getElementById("btnFilterEvent").classList.add("filter-event");
-  }
-  else {
-    document.getElementById("btnFilterEvent").classList.remove("filter-event");
-  }
+//   if (logFilter.includes(LogType.EVENT)) {
+//     document.getElementById("btnFilterEvent").classList.add("filter-event");
+//   }
+//   else {
+//     document.getElementById("btnFilterEvent").classList.remove("filter-event");
+//   }
 
-  document.getElementById("log-container").innerHTML = "";
-  addLogEntries(logs);
-}
+//   document.getElementById("log-container").innerHTML = "";
+//   addLogEntries(logs);
+// }
 
 function updateAppControls() {
   if(isSignedIn) {
@@ -494,46 +494,46 @@ function updateAppControls() {
 
 /// Logging Functions ///
 
-function showLogEntry(index){
-  let logTitle = document.getElementById("log-title");
-  let logText = document.getElementById("log-text");
-  let logTime = document.getElementById("log-time");
-  let logType = document.getElementById("log-type");
+// function showLogEntry(index){
+//   let logTitle = document.getElementById("log-title");
+//   let logText = document.getElementById("log-text");
+//   let logTime = document.getElementById("log-time");
+//   let logType = document.getElementById("log-type");
   
-  logTitle.textContent = filteredLogs[index].title;
-  logText.textContent = filteredLogs[index].text;
-  logTime.textContent = filteredLogs[index].time;
-  logType.textContent = filteredLogs[index].type;
+//   logTitle.textContent = filteredLogs[index].title;
+//   logText.textContent = filteredLogs[index].text;
+//   logTime.textContent = filteredLogs[index].time;
+//   logType.textContent = filteredLogs[index].type;
 
-  logType.classList.remove("filter-action");
-  logType.classList.remove("filter-http");
-  logType.classList.remove("filter-event");
+//   logType.classList.remove("filter-action");
+//   logType.classList.remove("filter-http");
+//   logType.classList.remove("filter-event");
 
-  switch (filteredLogs[index].type) {
-    case LogType.ACTION :
-      logType.classList.add("filter-action");
-      break;
-    case LogType.HTTP :
-      logType.classList.add("filter-http");
-      break;
-    case LogType.EVENT :
-      logType.classList.add("filter-event");
-      break;
-  }
+//   switch (filteredLogs[index].type) {
+//     case LogType.ACTION :
+//       logType.classList.add("filter-action");
+//       break;
+//     case LogType.HTTP :
+//       logType.classList.add("filter-http");
+//       break;
+//     case LogType.EVENT :
+//       logType.classList.add("filter-event");
+//       break;
+//   }
 
-  if (filteredLogs[index].status === LogStatus.ERROR) {
-    logText.setAttribute("style", "color: #AA0000;");
-  } else {
-    logText.removeAttribute("style");
-  }
+//   if (filteredLogs[index].status === LogStatus.ERROR) {
+//     logText.setAttribute("style", "color: #AA0000;");
+//   } else {
+//     logText.removeAttribute("style");
+//   }
 
-  // if(logTitle.textContent.includes("Video Stream")) {
-  //   document.getElementById("log-video").removeAttribute("style");
-  //   document.getElementById("video-stream").removeAttribute("hidden");
-  //   document.getElementById("log-text").setAttribute("hidden", "");
-  // } else {
-  //   document.getElementById("log-video").setAttribute("style", "display: none;");
-  //   document.getElementById("video-stream").setAttribute("hidden", "");
-  //   document.getElementById("log-text").removeAttribute("hidden");
-  // }
-}
+//   // if(logTitle.textContent.includes("Video Stream")) {
+//   //   document.getElementById("log-video").removeAttribute("style");
+//   //   document.getElementById("video-stream").removeAttribute("hidden");
+//   //   document.getElementById("log-text").setAttribute("hidden", "");
+//   // } else {
+//   //   document.getElementById("log-video").setAttribute("style", "display: none;");
+//   //   document.getElementById("video-stream").setAttribute("hidden", "");
+//   //   document.getElementById("log-text").removeAttribute("hidden");
+//   // }
+// }

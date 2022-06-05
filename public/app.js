@@ -40,16 +40,16 @@ async function init() {
 /** readStorage - Reads data from browser's local storage if available */
 function readStorage() {
 
-  if (localStorage["logs"]) {
-    // Parse local storage for logs:
-    const parsedStorage = JSON.parse(localStorage["logs"]);
-    // Read the parsed storage:
-    if (Array.isArray(parsedStorage))
-      for (let i = 0; i < parsedStorage.length; i++)
-        logs.push(parsedStorage[i]);
-    // Display ingested logs:
-    addLogEntries(logs);
-  }
+  // if (localStorage["logs"]) {
+  //   // Parse local storage for logs:
+  //   const parsedStorage = JSON.parse(localStorage["logs"]);
+  //   // Read the parsed storage:
+  //   if (Array.isArray(parsedStorage))
+  //     for (let i = 0; i < parsedStorage.length; i++)
+  //       logs.push(parsedStorage[i]);
+  //   // Display ingested logs:
+  //   addLogEntries(logs);
+  // }
 
   if (localStorage["clientId"]) {
     updateClientId(localStorage["clientId"]);
@@ -89,7 +89,7 @@ function readStorage() {
     logFilter = localStorage["logFilter"].split(",");
   }
   // Update the Log Filters based on logFilter:
-  updateLogFilter(logFilter);
+  // updateLogFilter(logFilter);
 }
 
 /** initializeDevices - Issues a list devices call if logged-in */
