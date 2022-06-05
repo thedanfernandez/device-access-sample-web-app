@@ -58,16 +58,16 @@ function readStorage() {
   if (localStorage["clientSecret"]) {
     updateClientSecret(localStorage["clientSecret"]);
   }
-  if (localStorage["projectId"]) {
-    updateProjectId(localStorage["projectId"]);
-  }
+  // if (localStorage["projectId"]) {
+  //   updateProjectId(localStorage["projectId"]);
+  // }
 
-  if (localStorage["oauthCode"]) {
-    updateOAuthCode(localStorage["oauthCode"]);
-  }
-  if (localStorage["accessToken"]) {
-    updateAccessToken(localStorage["accessToken"]);
-  }
+  // if (localStorage["oauthCode"]) {
+  //   updateOAuthCode(localStorage["oauthCode"]);
+  // }
+  // if (localStorage["accessToken"]) {
+  //   updateAccessToken(localStorage["accessToken"]);
+  // }
   if (localStorage["refreshToken"]) {
     updateRefreshToken(localStorage["refreshToken"]);
   }
@@ -76,15 +76,15 @@ function readStorage() {
   //   updateSignedIn(localStorage["isSignedIn"]);
   // }
   // Update the App Controls based on isSignedIn:
-  // updateAppControls();
+  // // updateAppControls();
 
-  if (localStorage["subscriptionId"]) {
-    updateSubscriptionId(localStorage["subscriptionId"]);
-  }
+  // if (localStorage["subscriptionId"]) {
+  //   updateSubscriptionId(localStorage["subscriptionId"]);
+  // }
 
-  if (localStorage["serviceAccountKey"]) {
-    updateServiceAccountKey(localStorage["serviceAccountKey"]);
-  }
+  // if (localStorage["serviceAccountKey"]) {
+  //   updateServiceAccountKey(localStorage["serviceAccountKey"]);
+  // }
 
   // if (localStorage["logFilter"]) {
   //   logFilter = localStorage["logFilter"].split(",");
