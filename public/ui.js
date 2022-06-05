@@ -238,11 +238,11 @@ function typeSubscriptionId() {
 
 /// UI Controller Functions - Selector ///
 
-function selectDevice() {
-  selectedDevice = JSON.parse(document.getElementById("sctDeviceList").value);
-  pushLog(LogType.ACTION, "Select Device", "Device Selection changed to " + selectedDevice.name);
-  showDeviceControls();
-}
+// function selectDevice() {
+//   selectedDevice = JSON.parse(document.getElementById("sctDeviceList").value);
+//   pushLog(LogType.ACTION, "Select Device", "Device Selection changed to " + selectedDevice.name);
+//   showDeviceControls();
+// }
 
 
 /// UI Controller Functions - Buttons ///
@@ -474,20 +474,20 @@ function updateAppControls() {
   }
 }
 
-function showDeviceControls() {
-  hideDeviceControls();
-  console.log("DEV", selectedDevice);
-  let controlArea = selectedDevice.type.toLowerCase() + "-control";
-  document.getElementById(controlArea).removeAttribute("hidden");
-}
+// function showDeviceControls() {
+//   hideDeviceControls();
+//   console.log("DEV", selectedDevice);
+//   let controlArea = selectedDevice.type.toLowerCase() + "-control";
+//   document.getElementById(controlArea).removeAttribute("hidden");
+// }
 
-function hideDeviceControls() {
-  document.getElementById("thermostat-control").setAttribute("hidden", true);
-  document.getElementById("camera-control").setAttribute("hidden", true);
-  document.getElementById("doorbell-control").setAttribute("hidden", true);
-  document.getElementById("camera-webrtc-control").setAttribute("hidden", true);
-  document.getElementById("doorbell-webrtc-control").setAttribute("hidden", true);
-}
+// function hideDeviceControls() {
+//   document.getElementById("thermostat-control").setAttribute("hidden", true);
+//   document.getElementById("camera-control").setAttribute("hidden", true);
+//   document.getElementById("doorbell-control").setAttribute("hidden", true);
+//   document.getElementById("camera-webrtc-control").setAttribute("hidden", true);
+//   document.getElementById("doorbell-webrtc-control").setAttribute("hidden", true);
+// }
 
 
 

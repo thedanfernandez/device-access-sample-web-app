@@ -65,7 +65,7 @@ function deviceAccessResponse(method, call, response) {
   // Based on the original request call, interpret the response:
   switch(call) {
     case 'listDevices':
-      clearDevices(); // Clear the previously detected devices.
+      // clearDevices(); // Clear the previously detected devices.
 
       // Check for detected devices:
       if(!data.devices) {
@@ -324,7 +324,9 @@ function onGenerateStream_WebRTC() {
 
 /** onExtendStream_WebRTC - Issues a ExtendWebRtcStream request */
 function onExtendStream_WebRTC() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+  // let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+  let endpoint = `${RinkDeckCamera}:executeCommand`;
+
   let payload = {
     "command": "sdm.devices.commands.CameraLiveStream.ExtendWebRtcStream",
     "params": {
@@ -336,7 +338,9 @@ function onExtendStream_WebRTC() {
 
 /** onStopStream_WebRTC - Issues a StopWebRtcStream request */
 function onStopStream_WebRTC() {
-  let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+  // let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
+  let endpoint = `${RinkDeckCamera}:executeCommand`;
+
   let payload = {
     "command": "sdm.devices.commands.CameraLiveStream.StopWebRtcStream",
     "params": {
