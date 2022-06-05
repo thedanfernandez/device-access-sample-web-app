@@ -64,72 +64,72 @@ function deviceAccessResponse(method, call, response) {
   }
   // Based on the original request call, interpret the response:
   switch(call) {
-    case 'listDevices':
-      // clearDevices(); // Clear the previously detected devices.
+    // case 'listDevices':
+    //   // clearDevices(); // Clear the previously detected devices.
 
-      // Check for detected devices:
-      if(!data.devices) {
-        console.error('No Devices!", "List Devices response contains no devices!')
-        // pushError(LogType.ACTION, "No Devices!", "List Devices response contains no devices!");
-        return;
-      }
+    //   // Check for detected devices:
+    //   if(!data.devices) {
+    //     console.error('No Devices!", "List Devices response contains no devices!')
+    //     // pushError(LogType.ACTION, "No Devices!", "List Devices response contains no devices!");
+    //     return;
+    //   }
 
-      // Iterate over detected devices:
-      for (let i = 0; i < data.devices.length; i++) {
-        // Parse Device Id:
-        let scannedId = data.devices[i].name;
-        let startIndexId = scannedId.lastIndexOf('/');
-        let deviceId = scannedId.substring(startIndexId + 1);
-        // Parse Device Type:
-        let scannedType = data.devices[i].type;
-        let startIndexType = scannedType.lastIndexOf('.');
-        let deviceType = scannedType.substring(startIndexType + 1);
-        // Parse Device Structure:
-        let scannedAssignee = data.devices[i].assignee;
-        let startIndexStructure = scannedAssignee.lastIndexOf('/structures/');
-        let endIndexStructure = scannedAssignee.lastIndexOf('/rooms/');
-        let deviceStructure = scannedAssignee.substring(startIndexStructure + 12, endIndexStructure);
+    //   // Iterate over detected devices:
+    //   for (let i = 0; i < data.devices.length; i++) {
+    //     // Parse Device Id:
+    //     let scannedId = data.devices[i].name;
+    //     let startIndexId = scannedId.lastIndexOf('/');
+    //     let deviceId = scannedId.substring(startIndexId + 1);
+    //     // Parse Device Type:
+    //     let scannedType = data.devices[i].type;
+    //     let startIndexType = scannedType.lastIndexOf('.');
+    //     let deviceType = scannedType.substring(startIndexType + 1);
+    //     // Parse Device Structure:
+    //     let scannedAssignee = data.devices[i].assignee;
+    //     let startIndexStructure = scannedAssignee.lastIndexOf('/structures/');
+    //     let endIndexStructure = scannedAssignee.lastIndexOf('/rooms/');
+    //     let deviceStructure = scannedAssignee.substring(startIndexStructure + 12, endIndexStructure);
 
-        // Handle special case for Displays (Skip, no support!)
-        if(deviceType === "DISPLAY")
-          continue;
+    //     // Handle special case for Displays (Skip, no support!)
+    //     if(deviceType === "DISPLAY")
+    //       continue;
 
-        // // Handle special case for Thermostats (Read Temperature Unit)
-        // if(deviceType === "THERMOSTAT") {
-        //   let tempScale = data.devices[i].traits["sdm.devices.traits.Settings"].temperatureScale;
-        //   if(tempScale === "FAHRENHEIT") {
-        //     document.getElementById("heatUnit").innerText = "°F";
-        //     document.getElementById("coolUnit").innerText = "°F";
-        //   } else {
-        //     document.getElementById("heatUnit").innerText = "°C";
-        //     document.getElementById("coolUnit").innerText = "°C";
-        //   }
-        // }
+    //     // // Handle special case for Thermostats (Read Temperature Unit)
+    //     // if(deviceType === "THERMOSTAT") {
+    //     //   let tempScale = data.devices[i].traits["sdm.devices.traits.Settings"].temperatureScale;
+    //     //   if(tempScale === "FAHRENHEIT") {
+    //     //     document.getElementById("heatUnit").innerText = "°F";
+    //     //     document.getElementById("coolUnit").innerText = "°F";
+    //     //   } else {
+    //     //     document.getElementById("heatUnit").innerText = "°C";
+    //     //     document.getElementById("coolUnit").innerText = "°C";
+    //     //   }
+    //     // }
 
-        // Parse Device Room:
-        let scannedName = data.devices[i].traits["sdm.devices.traits.Info"].customName;
-        let scannedRelations = data.devices[i].parentRelations;
-        let scannedRoom = scannedRelations[0]["displayName"];
-        // Parse Device Name:
-        let deviceName = scannedName !== "" ? scannedName : scannedRoom + " " + stringFormat(deviceType);
-        // Parse Device Traits:
-        let deviceTraits = Object.keys(data.devices[i].traits);
+    //     // Parse Device Room:
+    //     let scannedName = data.devices[i].traits["sdm.devices.traits.Info"].customName;
+    //     let scannedRelations = data.devices[i].parentRelations;
+    //     let scannedRoom = scannedRelations[0]["displayName"];
+    //     // Parse Device Name:
+    //     let deviceName = scannedName !== "" ? scannedName : scannedRoom + " " + stringFormat(deviceType);
+    //     // Parse Device Traits:
+    //     let deviceTraits = Object.keys(data.devices[i].traits);
 
-        // WebRTC check:
-        let traitCameraLiveStream = data.devices[i].traits["sdm.devices.traits.CameraLiveStream"];
+    //     // WebRTC check:
+    //     let traitCameraLiveStream = data.devices[i].traits["sdm.devices.traits.CameraLiveStream"];
 
-        if(traitCameraLiveStream) {
-          let supportedProtocols = traitCameraLiveStream.supportedProtocols;
-          if (supportedProtocols && supportedProtocols.includes("WEB_RTC")) {
-            deviceType += "-webrtc";
-            console.log({liveStreamTrait: scannedName})
-            initializeWebRTC();
-          }
-        }
+    //     if(traitCameraLiveStream) {
+    //       let supportedProtocols = traitCameraLiveStream.supportedProtocols;
+    //       if (supportedProtocols && supportedProtocols.includes("WEB_RTC")) {
+    //         deviceType += "-webrtc";
+    //         console.log({liveStreamTrait: scannedName})
+    //         initializeWebRTC();
+    //       }
+    //     }
 
-        addDevice(new Device(deviceId, deviceType, deviceName, deviceStructure, deviceTraits));
-      }
-      break;
+    //     addDevice(new Device(deviceId, deviceType, deviceName, deviceStructure, deviceTraits));
+    //   }
+    //   break;
     // case 'listStructures':
     //   console.log("List Structures!");
     //   break;
