@@ -91,21 +91,21 @@ downloadButton.addEventListener('click', () => {
 
 //New Button to start Stream
 const startStreamButton = document.getElementById('startStream');
-startStreamButton.addEventListener('click', clickGenerateStream_WebRTC);
+startStreamButton.addEventListener('click', onGenerateStream_WebRTC);
 
 
 
 /// UI Controller Functions - Buttons ///
 
-function clickSignIn() {
-  if (isSignedIn) {
-    pushLog(LogType.ACTION, "Sign Out", "Signing out.");
-    signOut();
-  } else { 
-    pushLog(LogType.ACTION, "Sign In", "Signing in.");
-    signIn();
-  }
-}
+// function clickSignIn() {
+//   if (isSignedIn) {
+//     pushLog(LogType.ACTION, "Sign Out", "Signing out.");
+//     signOut();
+//   } else { 
+//     pushLog(LogType.ACTION, "Sign In", "Signing in.");
+//     signIn();
+//   }
+// }
 
 // function clickViewOAuthCode() {
 //   pushLog(LogType.ACTION, "View OAuth Code", oauthCode);
@@ -147,7 +147,7 @@ function clickSignIn() {
 // }
 
 function clickListDevices() {
-  pushLog(LogType.ACTION, "List Devices", "Initiating List Devices call to Device Access API");
+  // pushLog(LogType.ACTION, "List Devices", "Initiating List Devices call to Device Access API");
   onListDevices();
 }
 
@@ -186,20 +186,20 @@ function clickListDevices() {
 //   onStopStream();
 // }
 
-function clickGenerateStream_WebRTC() {
-  pushLog(LogType.ACTION, "Camera Stream", "Initiating Camera Stream (WebRTC) call to Device Access API");
-  onGenerateStream_WebRTC();
-}
+// function clickGenerateStream_WebRTC() {
+//   pushLog(LogType.ACTION, "Camera Stream", "Initiating Camera Stream (WebRTC) call to Device Access API");
+//   onGenerateStream_WebRTC();
+// }
 
-function clickExtendStream_WebRTC() {
-  pushLog(LogType.ACTION, "Refresh Stream", "Initiating Refresh Camera Stream call to Device Access API");
-  onExtendStream_WebRTC();
-}
+// function clickExtendStream_WebRTC() {
+//   pushLog(LogType.ACTION, "Refresh Stream", "Initiating Refresh Camera Stream call to Device Access API");
+//   onExtendStream_WebRTC();
+// }
 
-function clickStopStream_WebRTC() {
-  pushLog(LogType.ACTION, "Stop Stream", "Initiating Stop Camera Stream call to Device Access API");
-  onStopStream_WebRTC();
-}
+// function clickStopStream_WebRTC() {
+//   pushLog(LogType.ACTION, "Stop Stream", "Initiating Stop Camera Stream call to Device Access API");
+//   onStopStream_WebRTC();
+// }
 
 /** clickClearLogs - Clears the list of logs, and the selected log */
 function clickClearLogs() {
