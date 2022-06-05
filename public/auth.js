@@ -35,164 +35,164 @@ let accessToken = "";
 let refreshToken = "";
 
 
-/** signIn - Initiates the OAuth flow for Account Linking */
-function signIn() {
-  // Calculating the redirect URI for current window
-  let redirectURI = window.location.origin + '/auth';
+// /** signIn - Initiates the OAuth flow for Account Linking */
+// function signIn() {
+//   // Calculating the redirect URI for current window
+//   let redirectURI = window.location.origin + '/auth';
    
-  // Google's OAuth 2.0 endpoint for requesting an access token
-  let oauthEndpoint = selectedEndpoint + projectId + "/auth";
+//   // Google's OAuth 2.0 endpoint for requesting an access token
+//   let oauthEndpoint = selectedEndpoint + projectId + "/auth";
 
-  // Create <form> element to submit parameters to OAuth 2.0 endpoint.
-  let form = document.createElement('form');
-  form.setAttribute('method', 'GET');
-  form.setAttribute('action', oauthEndpoint);
+//   // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+//   let form = document.createElement('form');
+//   form.setAttribute('method', 'GET');
+//   form.setAttribute('action', oauthEndpoint);
 
-  // Parameters to pass to OAuth 2.0 endpoint.
-  let params = {
-    'access_type': 'offline',
-    'client_id': clientId,
-    'include_granted_scopes': 'true',
-    'prompt' : 'consent',
-    'redirect_uri': redirectURI,
-    'response_type': 'code',
-    'scope': OAUTH_SCOPE,
-    'state': 'pass-through value'
-  };
+//   // Parameters to pass to OAuth 2.0 endpoint.
+//   let params = {
+//     'access_type': 'offline',
+//     'client_id': clientId,
+//     'include_granted_scopes': 'true',
+//     'prompt' : 'consent',
+//     'redirect_uri': redirectURI,
+//     'response_type': 'code',
+//     'scope': OAUTH_SCOPE,
+//     'state': 'pass-through value'
+//   };
 
-  // Add form parameters as hidden input values.
-  for (let p in params) {
-    let input = document.createElement('input');
-    input.setAttribute('type', 'hidden');
-    input.setAttribute('name', p);
-    input.setAttribute('value', params[p]);
-    form.appendChild(input);
-  }
+//   // Add form parameters as hidden input values.
+//   for (let p in params) {
+//     let input = document.createElement('input');
+//     input.setAttribute('type', 'hidden');
+//     input.setAttribute('name', p);
+//     input.setAttribute('value', params[p]);
+//     form.appendChild(input);
+//   }
 
-  // Add form to page and submit it to open the OAuth 2.0 endpoint.
-  document.body.appendChild(form);
-  // pushLog(LogType.HTTP, "GET Request", JSON.stringify(form, null, 4));
-  form.submit();
-}
+//   // Add form to page and submit it to open the OAuth 2.0 endpoint.
+//   document.body.appendChild(form);
+//   // pushLog(LogType.HTTP, "GET Request", JSON.stringify(form, null, 4));
+//   form.submit();
+// }
 
-/** signOut - Clears the local variables and auth tokens */
-function signOut() {
-  // Clear Credentials:
-  // updateClientId("");
-  // updateClientSecret("");
-  // updateProjectId("");
+// /** signOut - Clears the local variables and auth tokens */
+// function signOut() {
+//   // Clear Credentials:
+//   // updateClientId("");
+//   // updateClientSecret("");
+//   // updateProjectId("");
 
-  // Clear Tokens:
-  updateOAuthCode("");
-  updateAccessToken("");
-  updateRefreshToken("");
+//   // Clear Tokens:
+//   updateOAuthCode("");
+//   updateAccessToken("");
+//   updateRefreshToken("");
 
-  // Clear Devices:
-  clearDevices();
+//   // Clear Devices:
+//   clearDevices();
 
-  // Signed Out:
-  updateSignedIn(false);
-}
-
-
-/** handleAuth - Detects and sends oauth response code to server */
-function handleAuth () {
-  return new Promise(function (resolve, reject) {
-    // Return if current URI does not begin with /auth:
-    if (!window.location.pathname.startsWith("/auth")) {
-      // pushLog(LogType.ACTION, "Page Reload", window.location.pathname);
-      resolve();
-      return;
-    }
-
-    // pushLog(LogType.HTTP, "Page Redirect", window.location.pathname);
-
-    // Retrieve query parameters from url.
-    const queryparams = window.location.search.split("&");
-
-    // Extract key-value pairs from parameters.
-    for (let i = 0; i < queryparams.length; i++) {
-      const key = queryparams[i].split("=")[0];
-      const val = queryparams[i].split("=")[1];
-
-      // Send oAuth Code to server if found.
-      if (key === "code") {
-        updateOAuthCode(val);
-      }
-    }
-
-    // Prevent back button action by injecting a previous state.
-    window.history.pushState("object or string", "Title", "/");
-
-    resolve();
-  });
-}
+//   // Signed Out:
+//   updateSignedIn(false);
+// }
 
 
-/** exchangeCode - Exchanges OAuth Code to OAuth Tokens */
-function exchangeCode() {
-  return new Promise(function (resolve, reject) {
-    // Return if there is already an access code, or no OAuth Code:
-    if(accessToken || !oauthCode) {
-      resolve();
-      return;
-    }
+// /** handleAuth - Detects and sends oauth response code to server */
+// function handleAuth () {
+//   return new Promise(function (resolve, reject) {
+//     // Return if current URI does not begin with /auth:
+//     if (!window.location.pathname.startsWith("/auth")) {
+//       // pushLog(LogType.ACTION, "Page Reload", window.location.pathname);
+//       resolve();
+//       return;
+//     }
 
-    // pushLog(LogType.ACTION, "Exchange Code", "Exchanging OAuth code for auth tokens.");
+//     // pushLog(LogType.HTTP, "Page Redirect", window.location.pathname);
 
-    // Calculate redirect URI for current window:
-    let redirectURI = window.location.origin + '/auth';
+//     // Retrieve query parameters from url.
+//     const queryparams = window.location.search.split("&");
 
-    // Request Payload:
-    let payload = {
-      code: oauthCode,
-      client_id: clientId,
-      client_secret: clientSecret,
-      redirect_uri: redirectURI,
-      grant_type: 'authorization_code'
-    };
+//     // Extract key-value pairs from parameters.
+//     for (let i = 0; i < queryparams.length; i++) {
+//       const key = queryparams[i].split("=")[0];
+//       const val = queryparams[i].split("=")[1];
 
-    // Create Http Request:
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', TOKEN_ENDPOINT);
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+//       // Send oAuth Code to server if found.
+//       if (key === "code") {
+//         updateOAuthCode(val);
+//       }
+//     }
 
-    // Http Response Callback:
-    xhr.onload = function () {
-      if(xhr.status === 200) {  // HTTP OK Response
-        // Log Http response:
-        let responsePayload = "* Payload: \n" + xhr.responseText;
-        // pushLog(LogType.HTTP, "POST Response", responsePayload);
+//     // Prevent back button action by injecting a previous state.
+//     window.history.pushState("object or string", "Title", "/");
 
-        // Process tokens and sign in:
-        let parsedResponse = JSON.parse(xhr.responseText);
-        updateAccessToken(parsedResponse.access_token);
-        updateRefreshToken(parsedResponse.refresh_token);
-        updateSignedIn(true);
-        resolve();
+//     resolve();
+//   });
+// }
 
-      } else {  // HTTP Error Response
-        console.error({error: xhr.responseText})
-        // pushError(LogType.HTTP, "POST Response", xhr.responseText);
 
-        // Invalidate tokens and sign out:
-        updateAccessToken(undefined);
-        updateRefreshToken(undefined);
-        updateSignedIn(false);
-        resolve();
-      }
-    };
+// /** exchangeCode - Exchanges OAuth Code to OAuth Tokens */
+// function exchangeCode() {
+//   return new Promise(function (resolve, reject) {
+//     // Return if there is already an access code, or no OAuth Code:
+//     if(accessToken || !oauthCode) {
+//       resolve();
+//       return;
+//     }
 
-    // Log Http request:
-    let requestEndpoint = "* Endpoint: \n" + TOKEN_ENDPOINT;
-    let requestPayload = "* Payload: \n" + JSON.stringify(payload, null, 4);
-    // pushLog(LogType.HTTP, "POST Request", requestEndpoint + "\n\n" + requestPayload);
+//     // pushLog(LogType.ACTION, "Exchange Code", "Exchanging OAuth code for auth tokens.");
 
-    // Send Http request:
-    // pushLog(LogType.HTTP, "POST Request", JSON.stringify(payload, null, 4));
-    xhr.send(JSON.stringify(payload));
-  });
-}
+//     // Calculate redirect URI for current window:
+//     let redirectURI = window.location.origin + '/auth';
+
+//     // Request Payload:
+//     let payload = {
+//       code: oauthCode,
+//       client_id: clientId,
+//       client_secret: clientSecret,
+//       redirect_uri: redirectURI,
+//       grant_type: 'authorization_code'
+//     };
+
+//     // Create Http Request:
+//     let xhr = new XMLHttpRequest();
+//     xhr.open('POST', TOKEN_ENDPOINT);
+//     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+//     // Http Response Callback:
+//     xhr.onload = function () {
+//       if(xhr.status === 200) {  // HTTP OK Response
+//         // Log Http response:
+//         let responsePayload = "* Payload: \n" + xhr.responseText;
+//         // pushLog(LogType.HTTP, "POST Response", responsePayload);
+
+//         // Process tokens and sign in:
+//         let parsedResponse = JSON.parse(xhr.responseText);
+//         updateAccessToken(parsedResponse.access_token);
+//         updateRefreshToken(parsedResponse.refresh_token);
+//         updateSignedIn(true);
+//         resolve();
+
+//       } else {  // HTTP Error Response
+//         console.error({error: xhr.responseText})
+//         // pushError(LogType.HTTP, "POST Response", xhr.responseText);
+
+//         // Invalidate tokens and sign out:
+//         updateAccessToken(undefined);
+//         updateRefreshToken(undefined);
+//         updateSignedIn(false);
+//         resolve();
+//       }
+//     };
+
+//     // Log Http request:
+//     let requestEndpoint = "* Endpoint: \n" + TOKEN_ENDPOINT;
+//     let requestPayload = "* Payload: \n" + JSON.stringify(payload, null, 4);
+//     // pushLog(LogType.HTTP, "POST Request", requestEndpoint + "\n\n" + requestPayload);
+
+//     // Send Http request:
+//     // pushLog(LogType.HTTP, "POST Request", JSON.stringify(payload, null, 4));
+//     xhr.send(JSON.stringify(payload));
+//   });
+// }
 
 /** refreshAccess - Refreshes Access Token using the existing Refresh Token */
 function refreshAccess () {
