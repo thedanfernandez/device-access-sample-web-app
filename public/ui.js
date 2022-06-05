@@ -20,7 +20,6 @@ let mediaRecorder;
 let recordedBlobs;
 
 const recordButton = document.getElementById('record');
-const stopButton = document.getElementById('stop');
 const videoStreamEl = document.getElementById('video-stream');
 
 const downloadButton = document.getElementById('download');
