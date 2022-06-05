@@ -89,6 +89,12 @@ downloadButton.addEventListener('click', () => {
 
 /**************** END RECORDING ****************/
 
+//New Button to start Stream
+const startStreamButton = document.getElementById('startStream');
+startStreamButton.addEventListener('click', clickGenerateStream_WebRTC);
+
+
+
 /// UI Controller Functions - Buttons ///
 
 function clickSignIn() {
