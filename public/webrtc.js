@@ -140,25 +140,25 @@ const receiveChannelCallback = (event) => {
 };
 
 /** setDescriptionSuccess - Handles received success description */
-function setDescriptionSuccess(peerConnection, functionName) {
-  console.log(`setDescriptionSuccess()`);
-  console.log({setDescriptionSuccess: peerConnection});
-  const peerName = getPeerName(peerConnection);
-  console.log(`${peerName} ${functionName} complete.`);
-}
+// function setDescriptionSuccess(peerConnection, functionName) {
+//   console.log(`setDescriptionSuccess()`);
+//   console.log({setDescriptionSuccess: peerConnection});
+//   const peerName = getPeerName(peerConnection);
+//   console.log(`${peerName} ${functionName} complete.`);
+// }
 
 /** setLocalDescriptionSuccess - Handles received local success description */
 function setLocalDescriptionSuccess(peerConnection) {
   console.log(`setLocalDescriptionSuccess()`);
   console.log({setLocalDescriptionSuccess: peerConnection});
-  setDescriptionSuccess(peerConnection, 'setLocalDescription');
+  // setDescriptionSuccess(peerConnection, 'setLocalDescription');
 }
 
 /** setRemoteDescriptionSuccess - Handles received remote success description */
 function setRemoteDescriptionSuccess(peerConnection) {
   console.log(`setRemoteDescriptionSuccess()`);
   console.log({setRemoteDescriptionSuccess: peerConnection});
-  setDescriptionSuccess(peerConnection, 'setRemoteDescription');
+  // setDescriptionSuccess(peerConnection, 'setRemoteDescription');
 }
 
 /** setSessionDescriptionError - Handles session description error */

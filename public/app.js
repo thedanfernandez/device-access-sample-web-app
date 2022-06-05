@@ -30,6 +30,8 @@ async function init() {
   await exchangeCode();         // Exchanges authorization code to an access token
   await refreshAccess();        // Retrieves a new access token using refresh token
   initializeDevices();          // Issues a list devices call if logged-in
+
+
 }
 
 /** readStorage - Reads data from browser's local storage if available */
