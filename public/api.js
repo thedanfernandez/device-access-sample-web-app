@@ -69,7 +69,8 @@ function deviceAccessResponse(method, call, response) {
 
       // Check for detected devices:
       if(!data.devices) {
-        pushError(LogType.ACTION, "No Devices!", "List Devices response contains no devices!");
+        console.error('No Devices!", "List Devices response contains no devices!')
+        // pushError(LogType.ACTION, "No Devices!", "List Devices response contains no devices!");
         return;
       }
 
@@ -93,17 +94,17 @@ function deviceAccessResponse(method, call, response) {
         if(deviceType === "DISPLAY")
           continue;
 
-        // Handle special case for Thermostats (Read Temperature Unit)
-        if(deviceType === "THERMOSTAT") {
-          let tempScale = data.devices[i].traits["sdm.devices.traits.Settings"].temperatureScale;
-          if(tempScale === "FAHRENHEIT") {
-            document.getElementById("heatUnit").innerText = "°F";
-            document.getElementById("coolUnit").innerText = "°F";
-          } else {
-            document.getElementById("heatUnit").innerText = "°C";
-            document.getElementById("coolUnit").innerText = "°C";
-          }
-        }
+        // // Handle special case for Thermostats (Read Temperature Unit)
+        // if(deviceType === "THERMOSTAT") {
+        //   let tempScale = data.devices[i].traits["sdm.devices.traits.Settings"].temperatureScale;
+        //   if(tempScale === "FAHRENHEIT") {
+        //     document.getElementById("heatUnit").innerText = "°F";
+        //     document.getElementById("coolUnit").innerText = "°F";
+        //   } else {
+        //     document.getElementById("heatUnit").innerText = "°C";
+        //     document.getElementById("coolUnit").innerText = "°C";
+        //   }
+        // }
 
         // Parse Device Room:
         let scannedName = data.devices[i].traits["sdm.devices.traits.Info"].customName;
@@ -116,9 +117,6 @@ function deviceAccessResponse(method, call, response) {
 
         // WebRTC check:
         let traitCameraLiveStream = data.devices[i].traits["sdm.devices.traits.CameraLiveStream"];
-
-        //Get custom name
-
 
         if(traitCameraLiveStream) {
           let supportedProtocols = traitCameraLiveStream.supportedProtocols;
@@ -347,3 +345,4 @@ function onStopStream_WebRTC() {
   };
   deviceAccessRequest('POST', 'stopStream', endpoint, payload);
 }
+
