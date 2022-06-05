@@ -103,16 +103,16 @@ function readStorage() {
 
 /// Helper Functions ///
 
-/** Device Object Model */
-class Device {
-  constructor(id, type, name, structure, traits) {
-    this.id = id;
-    this.type = type;
-    this.name = name;
-    this.structure = structure;
-    this.traits = traits;
-  }
-}
+// /** Device Object Model */
+// class Device {
+//   constructor(id, type, name, structure, traits) {
+//     this.id = id;
+//     this.type = type;
+//     this.name = name;
+//     this.structure = structure;
+//     this.traits = traits;
+//   }
+// }
 
 // /** addDevice - Add device to Device Control list */
 // function addDevice(device) {
