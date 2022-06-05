@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+
+/**************** RECORDING ****************/
 let mediaRecorder;
 let recordedBlobs;
 
@@ -84,7 +86,7 @@ downloadButton.addEventListener('click', () => {
   }, 100);
 });
 
-/******************/
+/**************** END RECORDING ****************/
 
 /// UI Controller Functions - Buttons ///
 
@@ -98,84 +100,84 @@ function clickSignIn() {
   }
 }
 
-function clickViewOAuthCode() {
-  pushLog(LogType.ACTION, "View OAuth Code", oauthCode);
-}
+// function clickViewOAuthCode() {
+//   pushLog(LogType.ACTION, "View OAuth Code", oauthCode);
+// }
 
-function clickViewAccessToken() {
-  pushLog(LogType.ACTION, "View Access Token", accessToken);
-}
+// function clickViewAccessToken() {
+//   pushLog(LogType.ACTION, "View Access Token", accessToken);
+// }
 
-function clickViewRefreshToken() {
-  pushLog(LogType.ACTION, "View Refresh Token", refreshToken);
-}
+// function clickViewRefreshToken() {
+//   pushLog(LogType.ACTION, "View Refresh Token", refreshToken);
+// }
 
-function clickSubscribe() {
-  if(isSubscribed) {
-    pushLog(LogType.ACTION, "Unsubscribe", "Unsubscribing from PubSub events on Google Cloud Platform");
-    updateSubscribed(false);
-  } else {
-    pushLog(LogType.ACTION, "Subscribe", "Subscribing to PubSub events on Google Cloud Platform");
-    if(!logFilter.includes(LogType.EVENT)) {
-      onFilterEvent()
-    }
-    updateSubscribed(true);
-    pubsubEvents();
-  }
-}
+// function clickSubscribe() {
+//   if(isSubscribed) {
+//     pushLog(LogType.ACTION, "Unsubscribe", "Unsubscribing from PubSub events on Google Cloud Platform");
+//     updateSubscribed(false);
+//   } else {
+//     pushLog(LogType.ACTION, "Subscribe", "Subscribing to PubSub events on Google Cloud Platform");
+//     if(!logFilter.includes(LogType.EVENT)) {
+//       onFilterEvent()
+//     }
+//     updateSubscribed(true);
+//     pubsubEvents();
+//   }
+// }
 
-function clickGetEvents() {
-  pushLog(LogType.ACTION, "Get Events", "Getting PubSub events from Google Cloud Platform");
-  if(!logFilter.includes(LogType.EVENT)) {
-    onFilterEvent()
-  }
-  pubsubEvents();
-}
+// function clickGetEvents() {
+//   pushLog(LogType.ACTION, "Get Events", "Getting PubSub events from Google Cloud Platform");
+//   if(!logFilter.includes(LogType.EVENT)) {
+//     onFilterEvent()
+//   }
+//   pubsubEvents();
+// }
 
-function clickResourcePicker() {
-  pushLog(LogType.ACTION, "Resource Picker", "Opening up Resource Picker");
-  openResourcePicker();
-}
+// function clickResourcePicker() {
+//   pushLog(LogType.ACTION, "Resource Picker", "Opening up Resource Picker");
+//   openResourcePicker();
+// }
 
 function clickListDevices() {
   pushLog(LogType.ACTION, "List Devices", "Initiating List Devices call to Device Access API");
   onListDevices();
 }
 
-function clickListStructures() {
-  pushLog(LogType.ACTION, "List Structures", "Initiating List Structures call to Device Access API");
-  onListStructures();
-}
+// function clickListStructures() {
+//   pushLog(LogType.ACTION, "List Structures", "Initiating List Structures call to Device Access API");
+//   onListStructures();
+// }
 
-function clickFanMode() {
-  pushLog(LogType.ACTION, "Fan Mode", "");
-  onFan();
-}
+// function clickFanMode() {
+//   pushLog(LogType.ACTION, "Fan Mode", "");
+//   onFan();
+// }
 
-function clickThermostatMode() {
-  pushLog(LogType.ACTION, "Thermostat Mode", "");
-  onThermostatMode();
-}
+// function clickThermostatMode() {
+//   pushLog(LogType.ACTION, "Thermostat Mode", "");
+//   onThermostatMode();
+// }
 
-function clickTemperatureSetpoint() {
-  pushLog(LogType.ACTION, "Temperature Setpoint", "");
-  onTemperatureSetpoint();
-}
+// function clickTemperatureSetpoint() {
+//   pushLog(LogType.ACTION, "Temperature Setpoint", "");
+//   onTemperatureSetpoint();
+// }
 
-function clickGenerateStream() {
-  pushLog(LogType.ACTION, "Camera Stream", "Initiating Camera Stream call to Device Access API");
-  onGenerateStream();
-}
+// function clickGenerateStream() {
+//   pushLog(LogType.ACTION, "Camera Stream", "Initiating Camera Stream call to Device Access API");
+//   onGenerateStream();
+// }
 
-function clickExtendStream() {
-  pushLog(LogType.ACTION, "Refresh Stream", "Initiating Refresh Camera Stream call to Device Access API");
-  onExtendStream();
-}
+// function clickExtendStream() {
+//   pushLog(LogType.ACTION, "Refresh Stream", "Initiating Refresh Camera Stream call to Device Access API");
+//   onExtendStream();
+// }
 
-function clickStopStream() {
-  pushLog(LogType.ACTION, "Stop Stream", "Initiating Stop Camera Stream call to Device Access API");
-  onStopStream();
-}
+// function clickStopStream() {
+//   pushLog(LogType.ACTION, "Stop Stream", "Initiating Stop Camera Stream call to Device Access API");
+//   onStopStream();
+// }
 
 function clickGenerateStream_WebRTC() {
   pushLog(LogType.ACTION, "Camera Stream", "Initiating Camera Stream (WebRTC) call to Device Access API");
@@ -222,9 +224,9 @@ function typeSubscriptionId() {
   updateSubscriptionId(document.getElementById("txtSubscriptionId").value);
 }
 
-function typeServiceAccountKey() {
-  updateServiceAccountKey(document.getElementById("txtServiceAccountKey").value);
-}
+// function typeServiceAccountKey() {
+//   updateServiceAccountKey(document.getElementById("txtServiceAccountKey").value);
+// }
 
 
 /// UI Controller Functions - Selector ///
@@ -262,11 +264,11 @@ function updateSubscriptionId(value) {
   document.getElementById("txtSubscriptionId").value = subscriptionId;
 }
 
-function updateServiceAccountKey(value) {
-  serviceAccountKey = value;
-  localStorage["serviceAccountKey"] = serviceAccountKey;
-  document.getElementById("txtServiceAccountKey").value = serviceAccountKey;
-}
+// function updateServiceAccountKey(value) {
+//   serviceAccountKey = value;
+//   localStorage["serviceAccountKey"] = serviceAccountKey;
+//   document.getElementById("txtServiceAccountKey").value = serviceAccountKey;
+// }
 
 function updateOfferSDP(value) {
   offerSDP = value;
