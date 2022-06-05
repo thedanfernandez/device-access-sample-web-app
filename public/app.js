@@ -85,9 +85,9 @@ function readStorage() {
     updateServiceAccountKey(localStorage["serviceAccountKey"]);
   }
 
-  if (localStorage["logFilter"]) {
-    logFilter = localStorage["logFilter"].split(",");
-  }
+  // if (localStorage["logFilter"]) {
+  //   logFilter = localStorage["fffFilter"].split(",");
+  // }
   // Update the Log Filters based on logFilter:
   // updateLogFilter(logFilter);
 }
