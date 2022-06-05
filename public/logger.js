@@ -64,10 +64,10 @@ class Log {
 //   addLogEntry(newLog);
 // }
 
-/** pushError - Pushes a new error to the list */
-function pushError(type, title, text) {
-  pushLog(type, title, text, LogStatus.ERROR);
-}
+// /** pushError - Pushes a new error to the list */
+// function pushError(type, title, text) {
+//   pushLog(type, title, text, LogStatus.ERROR);
+// }
 
 /** addLogEntry - Adds a new log entry to log container */
 function addLogEntry(newLog) {
