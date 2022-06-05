@@ -117,10 +117,14 @@ function deviceAccessResponse(method, call, response) {
         // WebRTC check:
         let traitCameraLiveStream = data.devices[i].traits["sdm.devices.traits.CameraLiveStream"];
 
+        //Get custom name
+
+
         if(traitCameraLiveStream) {
           let supportedProtocols = traitCameraLiveStream.supportedProtocols;
           if (supportedProtocols && supportedProtocols.includes("WEB_RTC")) {
             deviceType += "-webrtc";
+            console.log({liveStreamTrait: scannedName})
             initializeWebRTC();
           }
         }

@@ -31,6 +31,9 @@ async function init() {
   await refreshAccess();        // Retrieves a new access token using refresh token
   initializeDevices();          // Issues a list devices call if logged-in
 
+  // setTimeout(() => {
+  //   clickGenerateStream_WebRTC()
+  // }, 3000)
 
 }
 
