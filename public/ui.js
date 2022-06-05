@@ -250,25 +250,25 @@ function typeSubscriptionId() {
 function updateClientId(value) {
   clientId = value;
   localStorage["clientId"] = clientId;
-  document.getElementById("txtClientId").value = clientId;
+  // document.getElementById("txtClientId").value = clientId;
 }
 
 function updateClientSecret(value) {
   clientSecret = value;
   localStorage["clientSecret"] = clientSecret;
-  document.getElementById("txtClientSecret").value = clientSecret;
+  // document.getElementById("txtClientSecret").value = clientSecret;
 }
 
 function updateProjectId(value) {
   projectId = value;
   localStorage["projectId"] = projectId;
-  document.getElementById("txtProjectId").value = projectId;
+  // document.getElementById("txtProjectId").value = projectId;
 }
 
 function updateSubscriptionId(value) {
   subscriptionId = value;
   localStorage["subscriptionId"] = subscriptionId;
-  document.getElementById("txtSubscriptionId").value = subscriptionId;
+  // document.getElementById("txtSubscriptionId").value = subscriptionId;
 }
 
 // function updateServiceAccountKey(value) {
@@ -280,17 +280,17 @@ function updateSubscriptionId(value) {
 function updateOfferSDP(value) {
   console.log({updateOfferSDP: value});
   offerSDP = value;
-  document.getElementById("txtOfferSDPCamera").value = offerSDP;
+  // document.getElementById("txtOfferSDPCamera").value = offerSDP;
   // document.getElementById("txtOfferSDPDoorbell").value = offerSDP;
 }
 
 function updateStreamExtensionToken(value) {
   let streamExtensionToken = value;
   console.log(`streamExtensionToken: ${streamExtensionToken}`);
-  document.getElementById("txtExtensionToken1").value = streamExtensionToken;
-  document.getElementById("txtExtensionToken2").value = streamExtensionToken;
-  document.getElementById("txtExtensionToken3").value = streamExtensionToken;
-  document.getElementById("txtExtensionToken4").value = streamExtensionToken;
+  // document.getElementById("txtExtensionToken1").value = streamExtensionToken;
+  // document.getElementById("txtExtensionToken2").value = streamExtensionToken;
+  // document.getElementById("txtExtensionToken3").value = streamExtensionToken;
+  // document.getElementById("txtExtensionToken4").value = streamExtensionToken;
 }
 
 function updateOAuthCode(value) {
@@ -351,38 +351,38 @@ function updateRefreshToken(value) {
   // }
 }
 
-function updateSignedIn(value) {
-  isSignedIn = value;
-  localStorage["isSignedIn"] = isSignedIn;
+// function updateSignedIn(value) {
+//   isSignedIn = value;
+//   localStorage["isSignedIn"] = isSignedIn;
   
-  if (isSignedIn) {
-    document.getElementById("btnSignIn").innerText = "Sign Out";
-  }
-  else {
-    document.getElementById("btnSignIn").innerText = "Sign In";
-  }
+//   if (isSignedIn) {
+//     document.getElementById("btnSignIn").innerText = "Sign Out";
+//   }
+//   else {
+//     document.getElementById("btnSignIn").innerText = "Sign In";
+//   }
 
-  updateSubscribed(false);
-  updateAppControls();
-}
+//   updateSubscribed(false);
+//   updateAppControls();
+// }
 
-function updateSubscribed(value) {
-  isSubscribed = value;
-  localStorage["isSubscribed"] = isSubscribed;
+// function updateSubscribed(value) {
+//   isSubscribed = value;
+//   localStorage["isSubscribed"] = isSubscribed;
 
-  if (isSubscribed) {
-    document.getElementById("btnSubscribe").innerText = "UnSubscribe";
-    document.getElementById("txtSubscriptionId").disabled = true;
-    document.getElementById("txtServiceAccountKey").disabled = true;
-    document.getElementById("btnGetEvents").disabled = true;
-  }
-  else {
-    document.getElementById("btnSubscribe").innerText = "Subscribe";
-    document.getElementById("txtSubscriptionId").disabled = false;
-    document.getElementById("txtServiceAccountKey").disabled = false;
-    document.getElementById("btnGetEvents").disabled = false;
-  }
-}
+//   // if (isSubscribed) {
+//   //   document.getElementById("btnSubscribe").innerText = "UnSubscribe";
+//   //   document.getElementById("txtSubscriptionId").disabled = true;
+//   //   document.getElementById("txtServiceAccountKey").disabled = true;
+//   //   document.getElementById("btnGetEvents").disabled = true;
+//   // }
+//   // else {
+//   //   document.getElementById("btnSubscribe").innerText = "Subscribe";
+//   //   document.getElementById("txtSubscriptionId").disabled = false;
+//   //   document.getElementById("txtServiceAccountKey").disabled = false;
+//   //   document.getElementById("btnGetEvents").disabled = false;
+//   // }
+// }
 
 // function updateLogFilter(value) {
 //   logFilter = value;
@@ -413,67 +413,67 @@ function updateSubscribed(value) {
 //   addLogEntries(logs);
 // }
 
-function updateAppControls() {
-  if(isSignedIn) {
-    // Account Linking Controls:
-    document.getElementById("txtClientId").disabled = true;
-    document.getElementById("txtClientSecret").disabled = true;
-    document.getElementById("txtProjectId").disabled = true;
-    // Auth Token Controls:
-    document.getElementById("imgOAuthCode").classList.remove("disabled-text");
-    document.getElementById("imgAccessToken").classList.remove("disabled-text");
-    document.getElementById("imgRefreshToken").classList.remove("disabled-text");
-    document.getElementById("hdrOAuthCode").classList.remove("disabled-text");
-    document.getElementById("hdrAccessToken").classList.remove("disabled-text");
-    document.getElementById("hdrRefreshToken").classList.remove("disabled-text");
-    document.getElementById("btnViewOAuthCode").disabled = false;
-    document.getElementById("btnViewAccessToken").disabled = false;
-    document.getElementById("btnViewRefreshToken").disabled = false;
-    // Device Access Controls:
-    document.getElementById("hdrDeviceAccess").classList.remove("disabled-text");
-    document.getElementById("btnResourcePicker").disabled = false;
-    document.getElementById("btnListDevices").disabled = false;
-    document.getElementById("btnListStructures").disabled = false;
-    // Device Events Controls:
-    document.getElementById("hdrDeviceEvents").classList.remove("disabled-text");
-    document.getElementById("txtSubscriptionId").disabled = false;
-    document.getElementById("txtServiceAccountKey").disabled = false;
-    document.getElementById("btnSubscribe").disabled = false;
-    document.getElementById("btnGetEvents").disabled = false;
-    // Device Control Controls:
-    document.getElementById("hdrDeviceControl").classList.remove("disabled-text");
-    document.getElementById("sctDeviceList").disabled = false;
-  } else {
-    // Account Linking Controls:
-    document.getElementById("txtClientId").disabled = false;
-    document.getElementById("txtClientSecret").disabled = false;
-    document.getElementById("txtProjectId").disabled = false;
-    // Auth Token Controls:
-    document.getElementById("imgOAuthCode").classList.add("disabled-text");
-    document.getElementById("imgAccessToken").classList.add("disabled-text");
-    document.getElementById("imgRefreshToken").classList.add("disabled-text");
-    document.getElementById("hdrOAuthCode").classList.add("disabled-text");
-    document.getElementById("hdrAccessToken").classList.add("disabled-text");
-    document.getElementById("hdrRefreshToken").classList.add("disabled-text");
-    document.getElementById("btnViewOAuthCode").disabled = true;
-    document.getElementById("btnViewAccessToken").disabled = true;
-    document.getElementById("btnViewRefreshToken").disabled = true;
-    // Device Access Controls
-    document.getElementById("hdrDeviceAccess").classList.add("disabled-text");
-    document.getElementById("btnResourcePicker").disabled = true;
-    document.getElementById("btnListDevices").disabled = true;
-    document.getElementById("btnListStructures").disabled = true;
-    // Device Events Controls
-    document.getElementById("hdrDeviceEvents").classList.add("disabled-text");
-    document.getElementById("txtSubscriptionId").disabled = true;
-    document.getElementById("txtServiceAccountKey").disabled = true;
-    document.getElementById("btnSubscribe").disabled = true;
-    document.getElementById("btnGetEvents").disabled = true;
-    // Device Control Controls:
-    document.getElementById("hdrDeviceControl").classList.add("disabled-text");
-    document.getElementById("sctDeviceList").disabled = true;
-  }
-}
+// function updateAppControls() {
+//   if(isSignedIn) {
+//     // Account Linking Controls:
+//     document.getElementById("txtClientId").disabled = true;
+//     document.getElementById("txtClientSecret").disabled = true;
+//     document.getElementById("txtProjectId").disabled = true;
+//     // Auth Token Controls:
+//     document.getElementById("imgOAuthCode").classList.remove("disabled-text");
+//     document.getElementById("imgAccessToken").classList.remove("disabled-text");
+//     document.getElementById("imgRefreshToken").classList.remove("disabled-text");
+//     document.getElementById("hdrOAuthCode").classList.remove("disabled-text");
+//     document.getElementById("hdrAccessToken").classList.remove("disabled-text");
+//     document.getElementById("hdrRefreshToken").classList.remove("disabled-text");
+//     document.getElementById("btnViewOAuthCode").disabled = false;
+//     document.getElementById("btnViewAccessToken").disabled = false;
+//     document.getElementById("btnViewRefreshToken").disabled = false;
+//     // Device Access Controls:
+//     document.getElementById("hdrDeviceAccess").classList.remove("disabled-text");
+//     document.getElementById("btnResourcePicker").disabled = false;
+//     document.getElementById("btnListDevices").disabled = false;
+//     document.getElementById("btnListStructures").disabled = false;
+//     // Device Events Controls:
+//     document.getElementById("hdrDeviceEvents").classList.remove("disabled-text");
+//     document.getElementById("txtSubscriptionId").disabled = false;
+//     document.getElementById("txtServiceAccountKey").disabled = false;
+//     document.getElementById("btnSubscribe").disabled = false;
+//     document.getElementById("btnGetEvents").disabled = false;
+//     // Device Control Controls:
+//     document.getElementById("hdrDeviceControl").classList.remove("disabled-text");
+//     document.getElementById("sctDeviceList").disabled = false;
+//   } else {
+//     // Account Linking Controls:
+//     document.getElementById("txtClientId").disabled = false;
+//     document.getElementById("txtClientSecret").disabled = false;
+//     document.getElementById("txtProjectId").disabled = false;
+//     // Auth Token Controls:
+//     document.getElementById("imgOAuthCode").classList.add("disabled-text");
+//     document.getElementById("imgAccessToken").classList.add("disabled-text");
+//     document.getElementById("imgRefreshToken").classList.add("disabled-text");
+//     document.getElementById("hdrOAuthCode").classList.add("disabled-text");
+//     document.getElementById("hdrAccessToken").classList.add("disabled-text");
+//     document.getElementById("hdrRefreshToken").classList.add("disabled-text");
+//     document.getElementById("btnViewOAuthCode").disabled = true;
+//     document.getElementById("btnViewAccessToken").disabled = true;
+//     document.getElementById("btnViewRefreshToken").disabled = true;
+//     // Device Access Controls
+//     document.getElementById("hdrDeviceAccess").classList.add("disabled-text");
+//     document.getElementById("btnResourcePicker").disabled = true;
+//     document.getElementById("btnListDevices").disabled = true;
+//     document.getElementById("btnListStructures").disabled = true;
+//     // Device Events Controls
+//     document.getElementById("hdrDeviceEvents").classList.add("disabled-text");
+//     document.getElementById("txtSubscriptionId").disabled = true;
+//     document.getElementById("txtServiceAccountKey").disabled = true;
+//     document.getElementById("btnSubscribe").disabled = true;
+//     document.getElementById("btnGetEvents").disabled = true;
+//     // Device Control Controls:
+//     document.getElementById("hdrDeviceControl").classList.add("disabled-text");
+//     document.getElementById("sctDeviceList").disabled = true;
+//   }
+// }
 
 // function showDeviceControls() {
 //   hideDeviceControls();

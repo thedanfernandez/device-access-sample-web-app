@@ -72,11 +72,11 @@ function readStorage() {
     updateRefreshToken(localStorage["refreshToken"]);
   }
 
-  if (localStorage["isSignedIn"] === true || localStorage["isSignedIn"] === "true") {
-    updateSignedIn(localStorage["isSignedIn"]);
-  }
+  // if (localStorage["isSignedIn"] === true || localStorage["isSignedIn"] === "true") {
+  //   updateSignedIn(localStorage["isSignedIn"]);
+  // }
   // Update the App Controls based on isSignedIn:
-  updateAppControls();
+  // updateAppControls();
 
   if (localStorage["subscriptionId"]) {
     updateSubscriptionId(localStorage["subscriptionId"]);
