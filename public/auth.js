@@ -71,7 +71,7 @@ function signIn() {
 
   // Add form to page and submit it to open the OAuth 2.0 endpoint.
   document.body.appendChild(form);
-  pushLog(LogType.HTTP, "GET Request", JSON.stringify(form, null, 4));
+  // pushLog(LogType.HTTP, "GET Request", JSON.stringify(form, null, 4));
   form.submit();
 }
 
@@ -100,12 +100,12 @@ function handleAuth () {
   return new Promise(function (resolve, reject) {
     // Return if current URI does not begin with /auth:
     if (!window.location.pathname.startsWith("/auth")) {
-      pushLog(LogType.ACTION, "Page Reload", window.location.pathname);
+      // pushLog(LogType.ACTION, "Page Reload", window.location.pathname);
       resolve();
       return;
     }
 
-    pushLog(LogType.HTTP, "Page Redirect", window.location.pathname);
+    // pushLog(LogType.HTTP, "Page Redirect", window.location.pathname);
 
     // Retrieve query parameters from url.
     const queryparams = window.location.search.split("&");
@@ -138,7 +138,7 @@ function exchangeCode() {
       return;
     }
 
-    pushLog(LogType.ACTION, "Exchange Code", "Exchanging OAuth code for auth tokens.");
+    // pushLog(LogType.ACTION, "Exchange Code", "Exchanging OAuth code for auth tokens.");
 
     // Calculate redirect URI for current window:
     let redirectURI = window.location.origin + '/auth';
@@ -162,7 +162,7 @@ function exchangeCode() {
       if(xhr.status === 200) {  // HTTP OK Response
         // Log Http response:
         let responsePayload = "* Payload: \n" + xhr.responseText;
-        pushLog(LogType.HTTP, "POST Response", responsePayload);
+        // pushLog(LogType.HTTP, "POST Response", responsePayload);
 
         // Process tokens and sign in:
         let parsedResponse = JSON.parse(xhr.responseText);
@@ -172,7 +172,8 @@ function exchangeCode() {
         resolve();
 
       } else {  // HTTP Error Response
-        pushError(LogType.HTTP, "POST Response", xhr.responseText);
+        console.error({error: xhr.responseText})
+        // pushError(LogType.HTTP, "POST Response", xhr.responseText);
 
         // Invalidate tokens and sign out:
         updateAccessToken(undefined);
@@ -185,10 +186,10 @@ function exchangeCode() {
     // Log Http request:
     let requestEndpoint = "* Endpoint: \n" + TOKEN_ENDPOINT;
     let requestPayload = "* Payload: \n" + JSON.stringify(payload, null, 4);
-    pushLog(LogType.HTTP, "POST Request", requestEndpoint + "\n\n" + requestPayload);
+    // pushLog(LogType.HTTP, "POST Request", requestEndpoint + "\n\n" + requestPayload);
 
     // Send Http request:
-    pushLog(LogType.HTTP, "POST Request", JSON.stringify(payload, null, 4));
+    // pushLog(LogType.HTTP, "POST Request", JSON.stringify(payload, null, 4));
     xhr.send(JSON.stringify(payload));
   });
 }
@@ -197,12 +198,14 @@ function exchangeCode() {
 function refreshAccess () {
   return new Promise(function (resolve, reject) {
     // Return if there no refresh token:
+    // console.log({refreshToken: refreshToken});
     if(!refreshToken) {
       resolve();
       return;
     }
 
-    pushLog(LogType.ACTION, "Refresh Access", "Refreshing Access Token using the available Refresh Token.");
+    // pushLog(LogType.ACTION, "Refresh Access", "Refreshing Access Token using the available Refresh Token.");
+    // const myToken = "1//062dbUMiPJx2gCgYIARAAGAYSNwF-L9IrnccAMSHRiBaYwzFEdKD4feLiHJ3Puy-POj1AQWu1hm40oFnfE9FP0_9duLHd454GG_E"
 
     // Request Payload:
     let payload = {
@@ -211,6 +214,8 @@ function refreshAccess () {
       client_secret: clientSecret,
       grant_type: 'refresh_token'
     };
+
+    console.log({refreshAccessTokenPayload: payload})
 
     // Create Http Request:
     let xhr = new XMLHttpRequest();
@@ -222,7 +227,7 @@ function refreshAccess () {
       if(xhr.status === 200) {  // HTTP OK Response
         // Log Http response:
         let responsePayload = "* Payload: \n" + xhr.responseText;
-        pushLog(LogType.HTTP, "POST Response", responsePayload);
+        // pushLog(LogType.HTTP, "POST Response", responsePayload);
 
         // Process access token:
         let parsedResponse = JSON.parse(xhr.responseText);
@@ -241,7 +246,7 @@ function refreshAccess () {
     // Log Http request:
     let requestEndpoint = "* Endpoint: \n" + TOKEN_ENDPOINT;
     let requestPayload = "* Payload: \n" + JSON.stringify(payload, null, 4);
-    pushLog(LogType.HTTP, "POST Request", requestEndpoint + "\n\n" + requestPayload);
+    // pushLog(LogType.HTTP, "POST Request", requestEndpoint + "\n\n" + requestPayload);
 
     // Send Http request:
     xhr.send(JSON.stringify(payload));

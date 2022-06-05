@@ -56,13 +56,13 @@ class Log {
   }
 }
 
-/** pushLog - Pushes a new log to the list */
-function pushLog(type, title, text, status = LogStatus.INFO) {
-  const newLog = new Log(type, title, text, status);
-  logs.push(newLog);
-  localStorage["logs"] = JSON.stringify(logs);
-  addLogEntry(newLog);
-}
+// /** pushLog - Pushes a new log to the list */
+// function pushLog(type, title, text, status = LogStatus.INFO) {
+//   const newLog = new Log(type, title, text, status);
+//   logs.push(newLog);
+//   localStorage["logs"] = JSON.stringify(logs);
+//   addLogEntry(newLog);
+// }
 
 /** pushError - Pushes a new error to the list */
 function pushError(type, title, text) {

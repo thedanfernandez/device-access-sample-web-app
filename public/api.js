@@ -32,18 +32,18 @@ function deviceAccessRequest(method, call, localpath, payload = "") {
   xhr.onload = function () {
     if(xhr.status === 200) {
       let responsePayload = "* Payload: \n" + xhr.response;
-      pushLog(LogType.HTTP, method + " Response", responsePayload);
+      // pushLog(LogType.HTTP, method + " Response", responsePayload);
       deviceAccessResponse(method, call, xhr.response);
     } else {
-      pushError(LogType.HTTP, method + " Response", xhr.responseText);
+      console.error({method, call, localpath, response: xhr.responseText});
     }
   };
 
   let requestEndpoint = "* Endpoint: \n" + selectedAPI + localpath;
   let requestAuthorization = "* Authorization: \n" + 'Bearer ' + accessToken;
   let requestPayload = "* Payload: \n" + JSON.stringify(payload, null, 4);
-  pushLog(LogType.HTTP, method + " Request",
-      requestEndpoint + "\n\n" + requestAuthorization + "\n\n" + requestPayload);
+  // pushLog(LogType.HTTP, method + " Request",
+  //     requestEndpoint + "\n\n" + requestAuthorization + "\n\n" + requestPayload);
 
   if (method === 'POST' && payload && payload !== "") {
     xhr.send(JSON.stringify(payload));
@@ -55,11 +55,11 @@ function deviceAccessRequest(method, call, localpath, payload = "") {
 
 /** deviceAccessResponse - Parses responses from Device Access API calls */
 function deviceAccessResponse(method, call, response) {
-  pushLog(LogType.HTTP, method + " Response", response);
+  // pushLog(LogType.HTTP, method + " Response", response);
   let data = JSON.parse(response);
   // Check if response data is empty:
   if(!data) {
-    pushError(LogType.ACTION, "Empty Response!", "Device Access response contains empty response!");
+    console.error({method, call, response, message:"Device Access response contains empty response!"});
     return;
   }
   // Based on the original request call, interpret the response:
@@ -145,7 +145,7 @@ function deviceAccessResponse(method, call, response) {
         updateStreamExtensionToken(data["results"].streamExtensionToken);
       if(data["results"] && data["results"].hasOwnProperty("answerSdp")) {
         updateWebRTC(data["results"].answerSdp);
-        pushLog(LogType.ACTION, "[Video Stream]", "");
+        // pushLog(LogType.ACTION, "[Video Stream]", "");
       }
       break;
     case 'refreshStream':
@@ -170,7 +170,7 @@ function deviceAccessResponse(method, call, response) {
     //   console.log("Temperature Setpoint!");
     //   break;
     default:
-      pushError(LogType.ACTION, "Error", "Unrecognized Request Call!");
+      console.error("Error", "Unrecognized Request Call!");
   }
 }
 
