@@ -259,17 +259,17 @@ function updateClientSecret(value) {
   // document.getElementById("txtClientSecret").value = clientSecret;
 }
 
-function updateProjectId(value) {
-  projectId = value;
-  localStorage["projectId"] = projectId;
-  // document.getElementById("txtProjectId").value = projectId;
-}
+// function updateProjectId(value) {
+//   projectId = value;
+//   localStorage["projectId"] = projectId;
+//   // document.getElementById("txtProjectId").value = projectId;
+// }
 
-function updateSubscriptionId(value) {
-  subscriptionId = value;
-  localStorage["subscriptionId"] = subscriptionId;
-  // document.getElementById("txtSubscriptionId").value = subscriptionId;
-}
+// function updateSubscriptionId(value) {
+//   subscriptionId = value;
+//   localStorage["subscriptionId"] = subscriptionId;
+//   // document.getElementById("txtSubscriptionId").value = subscriptionId;
+// }
 
 // function updateServiceAccountKey(value) {
 //   serviceAccountKey = value;
@@ -293,24 +293,24 @@ function updateStreamExtensionToken(value) {
   // document.getElementById("txtExtensionToken4").value = streamExtensionToken;
 }
 
-function updateOAuthCode(value) {
-  oauthCode = value;
-  localStorage["oauthCode"] = oauthCode;
+// function updateOAuthCode(value) {
+//   oauthCode = value;
+//   localStorage["oauthCode"] = oauthCode;
   
-  // if(value === "") {
-  //   document.getElementById("imgOAuthCode").src = "images/empty.png";
-  //   document.getElementById("imgOAuthCode").alt = "Pending...";
-  //   document.getElementById("imgOAuthCode").title = "";
-  // } else if(value === undefined) {
-  //   document.getElementById("imgOAuthCode").src = "images/failure.png";
-  //   document.getElementById("imgOAuthCode").alt = "Failure!";
-  //   document.getElementById("imgOAuthCode").title = "";
-  // } else {
-  //   document.getElementById("imgOAuthCode").src = "images/success.png";
-  //   document.getElementById("imgOAuthCode").alt = "Success!";
-  //   document.getElementById("imgOAuthCode").title = oauthCode;
-  // }
-}
+//   // if(value === "") {
+//   //   document.getElementById("imgOAuthCode").src = "images/empty.png";
+//   //   document.getElementById("imgOAuthCode").alt = "Pending...";
+//   //   document.getElementById("imgOAuthCode").title = "";
+//   // } else if(value === undefined) {
+//   //   document.getElementById("imgOAuthCode").src = "images/failure.png";
+//   //   document.getElementById("imgOAuthCode").alt = "Failure!";
+//   //   document.getElementById("imgOAuthCode").title = "";
+//   // } else {
+//   //   document.getElementById("imgOAuthCode").src = "images/success.png";
+//   //   document.getElementById("imgOAuthCode").alt = "Success!";
+//   //   document.getElementById("imgOAuthCode").title = oauthCode;
+//   // }
+// }
 
 function updateAccessToken(value) {
   accessToken = value;
