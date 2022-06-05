@@ -199,37 +199,37 @@ startStreamButton.addEventListener('click', onGenerateStream_WebRTC);
 // function clickStopStream_WebRTC() {
 //   pushLog(LogType.ACTION, "Stop Stream", "Initiating Stop Camera Stream call to Device Access API");
 //   onStopStream_WebRTC();
-// }
+// // }
 
-/** clickClearLogs - Clears the list of logs, and the selected log */
-function clickClearLogs() {
-  document.getElementById("log-container").innerHTML = '';
-  document.getElementById("log-title").innerHTML = '';
-  document.getElementById("log-text").innerHTML = '';
-  document.getElementById("log-time").innerHTML = '';
-  document.getElementById("log-type").innerHTML = '';
-  localStorage.removeItem("logs");
-  logs = [];
-}
+// /** clickClearLogs - Clears the list of logs, and the selected log */
+// function clickClearLogs() {
+//   document.getElementById("log-container").innerHTML = '';
+//   document.getElementById("log-title").innerHTML = '';
+//   document.getElementById("log-text").innerHTML = '';
+//   document.getElementById("log-time").innerHTML = '';
+//   document.getElementById("log-type").innerHTML = '';
+//   localStorage.removeItem("logs");
+//   logs = [];
+// }
 
 
 /// UI Controller Functions - Text Input ///
 
-function typeClientId() {
-  updateClientId(document.getElementById("txtClientId").value);
-}
+// function typeClientId() {
+//   updateClientId(document.getElementById("txtClientId").value);
+// }
 
-function typeClientSecret() {
-  updateClientSecret(document.getElementById("txtClientSecret").value);
-}
+// function typeClientSecret() {
+//   updateClientSecret(document.getElementById("txtClientSecret").value);
+// }
 
-function typeProjectId() {
-  updateProjectId(document.getElementById("txtProjectId").value);
-}
+// function typeProjectId() {
+//   updateProjectId(document.getElementById("txtProjectId").value);
+// }
 
-function typeSubscriptionId() {
-  updateSubscriptionId(document.getElementById("txtSubscriptionId").value);
-}
+// function typeSubscriptionId() {
+//   updateSubscriptionId(document.getElementById("txtSubscriptionId").value);
+// }
 
 // function typeServiceAccountKey() {
 //   updateServiceAccountKey(document.getElementById("txtServiceAccountKey").value);

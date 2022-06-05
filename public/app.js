@@ -15,10 +15,10 @@ limitations under the License.
 */
 
 
-// State Variables:
-let isSignedIn = false;
-let isSubscribed = false;
-let selectedDevice;
+// // State Variables:
+// let isSignedIn = false;
+// let isSubscribed = false;
+// let selectedDevice;
 
 
 /// Primary Functions ///
