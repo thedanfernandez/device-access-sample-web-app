@@ -46,6 +46,7 @@ function initializeWebRTC() {
   if(initialized===true)
     return;
   console.log(`initializeWebRTC()`);
+  console.log({initializeWebRTC: initialized});
   initialized = true;
   startLocalStream();
 }
@@ -53,6 +54,7 @@ function initializeWebRTC() {
 /** startLocalStream - Starts a WebRTC stream on the browser */
 function startLocalStream(mediaStream) {
   console.log(`startLocalStream()`);
+  console.log({startLocalStream: mediaStream});
   localPeerConnection = null;
   localSendChannel = null;
   localStream = null;
@@ -87,6 +89,7 @@ function startLocalStream(mediaStream) {
 /** createdOffer - Handles local offerSDP creation */
 function createdOffer(description) {
   console.log(`createdOffer()`);
+  console.log({createdOffer: description});
   updateOfferSDP(description.sdp);
   localPeerConnection.setLocalDescription(description)
       .then(() => {
@@ -96,7 +99,8 @@ function createdOffer(description) {
 
 /** updateWebRTC - Updates WebRTC connection on receiving answerSDP */
 function updateWebRTC(answerSDP) {
-  console.log(`Answer from remotePeerConnection:\n${answerSDP}.`);
+ // console.log(`Answer from remotePeerConnection:\n${answerSDP}.`);
+  console.log({updateWebRTC: answerSDP});
   if (answerSDP[answerSDP.length - 1] !== '\n') {
     answerSDP += '\n';
   }
@@ -114,6 +118,7 @@ function updateWebRTC(answerSDP) {
 /** getPeerName - Handles received peer name */
 function getPeerName(peerConnection) {
   console.log(`getPeerName()`);
+  console.log({getPeerName : peerConnection});
   return (peerConnection === localPeerConnection) ?
       'localPeerConnection' : 'remotePeerConnection';
 }
@@ -121,15 +126,15 @@ function getPeerName(peerConnection) {
 /** gotRemoteMediaTrack - Handles received media track */
 function gotRemoteMediaTrack(event) {
   console.log(`gotRemoteMediaTrack()`);
-  console.log(event.track)
+  console.log({getRemoteMediaTrack: event.track})
   remoteStream.addTrack(event.track);
   document.getElementById("video-stream").srcObject = remoteStream;
-  console.log('Received remote track.');
 }
 
 /** receiveChannelCallback - Handles received channel callback */
 const receiveChannelCallback = (event) => {
   console.log('receiveChannelCallback');
+  console.log({receiveChannelCallback: event});
   const receiveChannel = event.channel;
   receiveChannel.onmessage = handleReceiveMessage;
 };
@@ -137,6 +142,7 @@ const receiveChannelCallback = (event) => {
 /** setDescriptionSuccess - Handles received success description */
 function setDescriptionSuccess(peerConnection, functionName) {
   console.log(`setDescriptionSuccess()`);
+  console.log({setDescriptionSuccess: peerConnection});
   const peerName = getPeerName(peerConnection);
   console.log(`${peerName} ${functionName} complete.`);
 }
@@ -144,12 +150,14 @@ function setDescriptionSuccess(peerConnection, functionName) {
 /** setLocalDescriptionSuccess - Handles received local success description */
 function setLocalDescriptionSuccess(peerConnection) {
   console.log(`setLocalDescriptionSuccess()`);
+  console.log({setLocalDescriptionSuccess: peerConnection});
   setDescriptionSuccess(peerConnection, 'setLocalDescription');
 }
 
 /** setRemoteDescriptionSuccess - Handles received remote success description */
 function setRemoteDescriptionSuccess(peerConnection) {
   console.log(`setRemoteDescriptionSuccess()`);
+  console.log({setRemoteDescriptionSuccess: peerConnection});
   setDescriptionSuccess(peerConnection, 'setRemoteDescription');
 }
 
@@ -166,9 +174,11 @@ function handleLocalMediaStreamError(error) {
 /** handleReceiveMessage - Handles receiving message */
 const handleReceiveMessage = (event) => {
   console.log(`Incoming DataChannel push: ${event.data}`);
+  console.log({handleReceiveMessage: event});
 };
 
 /** handleConnectionChange - Handles connection change */
 function handleConnectionChange(event) {
   console.log('ICE state change event: ', event);
+  console.log({handleConnectionChange: event});
 }

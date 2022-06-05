@@ -112,3 +112,51 @@ Order of operations
   - updateAppControls
 - resolve
 - 
+### Nest Tutorial
+
+Tutorial - https://developers.google.com/nest/device-access/authorize
+
+
+Open the following link in a web browser, replacing:
+
+project-id with your Device Access Project ID
+oauth2-client-id with the OAuth2 Client ID from your Google Cloud Platform (GCP) Credentials
+
+https://nestservices.google.com/partnerconnections/project-id/auth?redirect_uri=https://www.google.com&access_type=offline&prompt=consent&client_id=oauth2-client-id&response_type=code&scope=https://www.googleapis.com/auth/sdm.service
+
+
+## Called with Parameters
+https://nestservices.google.com/partnerconnections/64cee621-f825-4365-a5d0-046fd6b7a02a/auth?redirect_uri=https://www.google.com&access_type=offline&prompt=consent&client_id=495755512033-cs2183p8dof8393a4k4u7rtiehhct1ta.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/sdm.service
+
+## Access Token request
+https://www.googleapis.com/oauth2/v4/token?client_id=495755512033-cs2183p8dof8393a4k4u7rtiehhct1ta.apps.googleusercontent.com&client_secret=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&code=4/0AX4XfWhgGrzA63eR_anSrN2Hfgrtx51V5Dl59nCJ7khAMjYu_tUs5sgrHz4EoKFNUI6omQ&grant_type=authorization_code&redirect_uri=https://www.google.com
+
+## See this
+
+https://www.google.com/?code=4/0AX4XfWhgGrzA63eR_anSrN2Hfgrtx51V5Dl59nCJ7khAMjYu_tUs5sgrHz4EoKFNUI6omQ&scope=https://www.googleapis.com/auth/sdm.service 
+
+Code: 4/0AX4XfWhgGrzA63eR_anSrN2Hfgrtx51V5Dl59nCJ7khAMjYu_tUs5sgrHz4EoKFNUI6omQ
+Code: 4/0AX4XfWgYaTq3B1It8WwZ0k1J9cBQOlyrVBSbMuHziBo7-4obhGwlSCZ_z8aTesec41Afpg
+
+https://nestservices.google.com/partnerconnections/64cee621-f825-4365-a5d0-046fd6b7a02a/auth?access_type=offline&client_id=495755512033-cs2183p8dof8393a4k4u7rtiehhct1ta.apps.googleusercontent.com&include_granted_scopes=true&prompt=consent&redirect_uri=http%3A%2F%2Flocalhost%3A5001%2Fauth&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsdm.service&state=pass-through+value
+
+## WebRTC
+
+- Generate Stream (api.js 132)
+- updateWebRTC (webrtc.js 103)
+- ice state change event (webrtc 182)
+- handleConnectionChange (webrtc 183)
+- gotRemoteMediaTrack (webrtc 129)
+- gotRemoteMediaTrack (webrtc 129)
+- setRemoteMediaDescriptionSuccess (webrtc 159)
+- setDescriptionSuccess (webrtc 144)
+- getPeerName (webrtc 120)
+- XHR finished loading Post - (api.js 46)
+- Ice state change event (webrtc 182)
+- handleConnectionChange<event> (webrtc 183)
+- receiveChannelCallback (webrtc 136)
+- receiveChannelCallback (webrtc 136)
+- Incoming DataChannel push(webrtc 176)
+- handleReceiveMessage (webrtc 177)
+- Ice state change event (webrtc 182)
+- handleConnectionChange (webrtc 183)
