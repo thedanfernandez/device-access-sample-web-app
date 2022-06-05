@@ -29,10 +29,11 @@ async function init() {
   // await handleAuth();           // Checks incoming authorization code from /auth path
   // await exchangeCode();         // Exchanges authorization code to an access token
   await refreshAccess();        // Retrieves a new access token using refresh token
-  initializeDevices();          // Issues a list devices call if logged-in
+  initializeWebRTC()
+  // initializeDevices();          // Issues a list devices call if logged-in
 
   // setTimeout(() => {
-  //   clickGenerateStream_WebRTC()
+  //   onGenerateStream_WebRTC()
   // }, 3000)
 
 }
@@ -86,7 +87,7 @@ function readStorage() {
   }
 
   // if (localStorage["logFilter"]) {
-  //   logFilter = localStorage["fffFilter"].split(",");
+  //   logFilter = localStorage["logFilter"].split(",");
   // }
   // Update the Log Filters based on logFilter:
   // updateLogFilter(logFilter);
