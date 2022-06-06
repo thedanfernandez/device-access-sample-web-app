@@ -1,6 +1,5 @@
-const RinkDeckCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA"
-                //     "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA:executeCommand"
-const RinkTowerCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEt91Ajn0DOWYiejYtAuz8ePIY7U9luwiczyMiJyHjElP6eWlXdXh2QRvLQWICtpp2VxnSBDCPgAEPwxBr_w9JdtPw"
+const leftCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEt91Ajn0DOWYiejYtAuz8ePIY7U9luwiczyMiJyHjElP6eWlXdXh2QRvLQWICtpp2VxnSBDCPgAEPwxBr_w9JdtPw"
+const rightCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA"
 
 /* Copyright 2020 Google LLC
 
@@ -88,10 +87,17 @@ function deviceAccessResponse(method, call, response) {
 }
 
 /** onGenerateStream_WebRTC - Issues a GenerateWebRtcStream request */
-function onGenerateStream_WebRTC() {
+function onGenerateStream_WebRTC(camera) {
+  let endpoint = undefined
+  if(camera === 'left') {
+    endpoint = `${leftCamera}:executeCommand`;
+  }
+  else {
+    endpoint = `${rightCamera}:executeCommand`;
+  }
+
   // console.log(`{onGenerateStream_WebRTC: ${selectedDevice.id}}`);
   //let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let endpoint = `${RinkDeckCamera}:executeCommand`;
   console.log({endpoint: endpoint})
   
   let payload = {
@@ -107,7 +113,7 @@ function onGenerateStream_WebRTC() {
 /** onExtendStream_WebRTC - Issues a ExtendWebRtcStream request */
 function onExtendStream_WebRTC() {
   // let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let endpoint = `${RinkDeckCamera}:executeCommand`;
+  let endpoint = `${rightCamera}:executeCommand`;
 
   let payload = {
     "command": "sdm.devices.commands.CameraLiveStream.ExtendWebRtcStream",
@@ -121,7 +127,7 @@ function onExtendStream_WebRTC() {
 /** onStopStream_WebRTC - Issues a StopWebRtcStream request */
 function onStopStream_WebRTC() {
   // let endpoint = "/enterprises/" + projectId + "/devices/" + selectedDevice.id + ":executeCommand";
-  let endpoint = `${RinkDeckCamera}:executeCommand`;
+  let endpoint = `${rightCamera}:executeCommand`;
 
   let payload = {
     "command": "sdm.devices.commands.CameraLiveStream.StopWebRtcStream",

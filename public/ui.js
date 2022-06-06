@@ -90,7 +90,12 @@ downloadButton.addEventListener('click', () => {
 
 //New Button to start Stream
 const startStreamButton = document.getElementById('startStream');
-startStreamButton.addEventListener('click', onGenerateStream_WebRTC);
+startStreamButton.addEventListener('click', startStream);
+
+function startStream() {
+  let urlParams = new URLSearchParams(window.location.search);
+  onGenerateStream_WebRTC( urlParams.get('camera'))
+}
 
 /// UI Controller Functions - Buttons ///
 
