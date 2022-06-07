@@ -1,6 +1,6 @@
 const leftCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEt91Ajn0DOWYiejYtAuz8ePIY7U9luwiczyMiJyHjElP6eWlXdXh2QRvLQWICtpp2VxnSBDCPgAEPwxBr_w9JdtPw"
 const rightCamera = "/enterprises/64cee621-f825-4365-a5d0-046fd6b7a02a/devices/AVPHwEtTo_xa7_Vtyq2vRcwYKMLm50LLyigA0BKZfkd5jtPTS38YLjgfryN5tV81xetkSyG8-h6-8WGzvUyCw8dkEmAoaA"
-
+const tokenInterval =  180000 //3min  15000 //15s 
 /* Copyright 2020 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,6 +70,9 @@ function deviceAccessResponse(method, call, response) {
       if(data["results"] && data["results"].hasOwnProperty("answerSdp")) {
         updateWebRTC(data["results"].answerSdp);
       }
+
+      //Start extending stream
+      setInterval(extendTokens, tokenInterval )
       break;
     case 'refreshStream':
       console.log("Refresh Stream!");
@@ -137,3 +140,13 @@ function onStopStream_WebRTC() {
   deviceAccessRequest('POST', 'stopStream', endpoint, payload);
 }
 
+/**
+ * Get new refresh token and stream token every tokenInterval
+ */
+async function extendTokens()
+{
+  console.log(`running extendTokens()`);
+  await refreshAccess();        // Retrieves a new access token using refresh token
+  onExtendStream_WebRTC() //refreshes stream
+
+}
