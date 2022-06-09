@@ -14,13 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
-
-
-/// Primary Functions ///
-
 /** init - Initializes the loaded javascript */
 async function init() {
+  readQueryString();
   readStorage();                // Reads data from browser's local storage if available
   await refreshAccess();        // Retrieves a new access token using refresh token
   initializeWebRTC()
@@ -41,3 +37,16 @@ function readStorage() {
   }
 
 }
+
+// function readQueryString() {
+
+//   let urlParams = new URLSearchParams(window.location.search);
+       
+
+//   const clientSecret = urlParams.get('clientSecret');
+//   const accessToken = urlParams.get('accessToken');
+//   const refreshToken = urlParams.get('refreshToken');
+//   const clientId = urlParams.get('clientId');
+//   const oAuthCode = urlParams.get('oAuthCode')
+
+// }

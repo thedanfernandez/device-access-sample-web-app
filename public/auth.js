@@ -41,9 +41,6 @@ function refreshAccess () {
       return;
     }
 
-    // pushLog(LogType.ACTION, "Refresh Access", "Refreshing Access Token using the available Refresh Token.");
-    // const myToken = "1//062dbUMiPJx2gCgYIARAAGAYSNwF-L9IrnccAMSHRiBaYwzFEdKD4feLiHJ3Puy-POj1AQWu1hm40oFnfE9FP0_9duLHd454GG_E"
-
     // Request Payload:
     let payload = {
       refresh_token: refreshToken,
