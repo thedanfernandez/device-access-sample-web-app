@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 // Device Access Variables:
-let streamExtensionToken = "";
+let mediaSessionId = "";
 
 /** deviceAccessRequest - Issues requests to Device Access Rest API */
 function deviceAccessRequest(method, call, localpath, payload = "") {
@@ -63,10 +63,10 @@ function deviceAccessResponse(method, call, response) {
       console.log(`mediaSessionId=${data.results.mediaSessionId}`)
       
       if(data["results"] && data["results"].hasOwnProperty("mediaSessionId"))
-        streamExtensionToken = data.results.mediaSessionId;
+        mediaSessionId = data.results.mediaSessionId;
 
       if(data["results"] && data["results"].hasOwnProperty("streamExtensionToken"))
-        updateStreamExtensionToken(data["results"].streamExtensionToken);
+        updateMediaSessionId(data["results"].streamExtensionToken);
       if(data["results"] && data["results"].hasOwnProperty("answerSdp")) {
         updateWebRTC(data["results"].answerSdp);
       }
@@ -77,7 +77,7 @@ function deviceAccessResponse(method, call, response) {
     case 'refreshStream':
       console.log("Refresh Stream!");
       if(data["results"] && data["results"].hasOwnProperty("streamExtensionToken"))
-        updateStreamExtensionToken(data["results"].streamExtensionToken);
+        updateMediaSessionId(data["results"].streamExtensionToken);
       break;
     case 'stopStream':
       console.log("Stop Stream!");
@@ -120,7 +120,7 @@ function onExtendStream_WebRTC() {
   let payload = {
     "command": "sdm.devices.commands.CameraLiveStream.ExtendWebRtcStream",
     "params": {
-      "mediaSessionId" : streamExtensionToken
+      "mediaSessionId" : mediaSessionId
     }
   };
   deviceAccessRequest('POST', 'refreshStream', endpoint, payload);
@@ -134,7 +134,7 @@ function onStopStream_WebRTC() {
   let payload = {
     "command": "sdm.devices.commands.CameraLiveStream.StopWebRtcStream",
     "params": {
-      "mediaSessionId" : streamExtensionToken
+      "mediaSessionId" : mediaSessionId
     }
   };
   deviceAccessRequest('POST', 'stopStream', endpoint, payload);

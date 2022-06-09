@@ -16,8 +16,10 @@ limitations under the License.
 
 /** init - Initializes the loaded javascript */
 async function init() {
-  readQueryString();
-  readStorage();                // Reads data from browser's local storage if available
+  if(!readQueryString()) {
+    readStorage();                // Reads data from browser's local storage if available
+
+  }
   await refreshAccess();        // Retrieves a new access token using refresh token
   initializeWebRTC()
 }
@@ -38,15 +40,18 @@ function readStorage() {
 
 }
 
-// function readQueryString() {
+function readQueryString() {
 
-//   let urlParams = new URLSearchParams(window.location.search);
-       
+  let urlParams = new URLSearchParams(window.location.search);
 
-//   const clientSecret = urlParams.get('clientSecret');
-//   const accessToken = urlParams.get('accessToken');
-//   const refreshToken = urlParams.get('refreshToken');
-//   const clientId = urlParams.get('clientId');
-//   const oAuthCode = urlParams.get('oAuthCode')
+  if(urlParams.has("useQueryString")) { 
+    updateClientId(urlParams.get('clientId'));
+    updateClientSecret(urlParams.get('clientSecret'));
+    updateRefreshToken(urlParams.get('refreshToken'));
+    updateAccessToken(urlParams.get('accessToken'));
+    return true
+  }
+  return false;
 
-// }
+
+}

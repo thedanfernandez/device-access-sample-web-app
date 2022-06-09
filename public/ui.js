@@ -118,9 +118,10 @@ function updateOfferSDP(value) {
   // document.getElementById("txtOfferSDPDoorbell").value = offerSDP;
 }
 
-function updateStreamExtensionToken(value) {
-  let streamExtensionToken = value;
-  console.log(`streamExtensionToken: ${streamExtensionToken}`);
+function updateMediaSessionId(value) {
+  let mediaSessionId = value;
+  localStorage["mediaSessionId"] = mediaSessionId;
+  console.log(`streamExtensionToken: ${mediaSessionId}`);
 }
 
 function updateAccessToken(value) {
