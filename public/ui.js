@@ -99,17 +99,7 @@ function startStream() {
 
 /// UI Controller Functions - Buttons ///
 
-function updateClientId(value) {
-  clientId = value;
-  localStorage["clientId"] = clientId;
-  // document.getElementById("txtClientId").value = clientId;
-}
 
-function updateClientSecret(value) {
-  clientSecret = value;
-  localStorage["clientSecret"] = clientSecret;
-  // document.getElementById("txtClientSecret").value = clientSecret;
-}
 
 function updateOfferSDP(value) {
   console.log({updateOfferSDP: value});
@@ -118,19 +108,3 @@ function updateOfferSDP(value) {
   // document.getElementById("txtOfferSDPDoorbell").value = offerSDP;
 }
 
-function updateMediaSessionId(value) {
-  let mediaSessionId = value;
-  localStorage["mediaSessionId"] = mediaSessionId;
-  console.log(`streamExtensionToken: ${mediaSessionId}`);
-}
-
-function updateAccessToken(value) {
-  accessToken = value;
-  localStorage["accessToken"] = accessToken;
-  
-}
-
-function updateRefreshToken(value) {
-  refreshToken = value;
-  localStorage["refreshToken"] = refreshToken;
-}
