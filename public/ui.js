@@ -102,7 +102,5 @@ function startStream() {
 function updateOfferSDP(value) {
   console.log({updateOfferSDP: value});
   offerSDP = value;
-  // document.getElementById("txtOfferSDPCamera").value = offerSDP;
-  // document.getElementById("txtOfferSDPDoorbell").value = offerSDP;
 }
 

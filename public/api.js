@@ -108,7 +108,6 @@ function onGenerateStream_WebRTC(camera) {
       "offer_sdp": offerSDP
     }
   };
-
   deviceAccessRequest('POST', 'generateStream', endpoint, payload);
 }
 

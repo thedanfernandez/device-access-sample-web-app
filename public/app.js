@@ -43,7 +43,6 @@ function readStorage() {
 function readQueryString() {
 
   let urlParams = new URLSearchParams(window.location.search);
-
   
   if(urlParams.has("useQueryString")) { 
     console.log(`using query string`);

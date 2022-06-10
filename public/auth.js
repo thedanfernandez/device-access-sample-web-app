@@ -77,11 +77,6 @@ function refreshAccess () {
       }
     };
 
-    // Log Http request:
-    let requestEndpoint = "* Endpoint: \n" + TOKEN_ENDPOINT;
-    let requestPayload = "* Payload: \n" + JSON.stringify(payload, null, 4);
-    // pushLog(LogType.HTTP, "POST Request", requestEndpoint + "\n\n" + requestPayload);
-
     // Send Http request:
     xhr.send(JSON.stringify(payload));
   });
