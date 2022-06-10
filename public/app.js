@@ -44,16 +44,17 @@ function readQueryString() {
 
   let urlParams = new URLSearchParams(window.location.search);
 
+  
   if(urlParams.has("useQueryString")) { 
+    console.log(`using query string`);
     updateClientId(urlParams.get('clientId'));
     updateClientSecret(urlParams.get('clientSecret'));
     updateRefreshToken(urlParams.get('refreshToken'));
     updateAccessToken(urlParams.get('accessToken'));
     return true
   }
+  console.log(`using local storage`);
   return false;
-
-
 }
 
 function updateMediaSessionId(value) {

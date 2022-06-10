@@ -99,8 +99,6 @@ function startStream() {
 
 /// UI Controller Functions - Buttons ///
 
-
-
 function updateOfferSDP(value) {
   console.log({updateOfferSDP: value});
   offerSDP = value;
